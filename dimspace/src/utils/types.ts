@@ -18,4 +18,5 @@ export type Course = {
   professor: string;
   completed: boolean;
   notifications?: string[];
+  color?: string;
 };

@@ -10,6 +10,7 @@ export const sampleCourses: Course[] = [
     year: 2023,
     professor: "John Doe",
     completed: false,
+    color: "red.400",
   },
   {
     id: "2",
@@ -21,6 +22,7 @@ export const sampleCourses: Course[] = [
     professor: "Jane Doe",
     completed: false,
     notifications: ["Midterm is coming up!"],
+    color: "blue.400",
   },
   {
     id: "3",
@@ -31,6 +33,7 @@ export const sampleCourses: Course[] = [
     year: 2023,
     professor: "Mark Smith",
     completed: false,
+    color: "green.400",
   },
   {
     id: "4",
@@ -45,6 +48,7 @@ export const sampleCourses: Course[] = [
       "Assignment 1 is due in 2 days",
       "Groups are being formed for the final project in the next lab",
     ],
+    color: "yellow.400",
   },
   {
     id: "5",
@@ -55,6 +59,7 @@ export const sampleCourses: Course[] = [
     year: 2022,
     professor: "John Doe",
     completed: true,
+    color: "purple.400",
   },
   {
     id: "6",
@@ -65,6 +70,7 @@ export const sampleCourses: Course[] = [
     year: 2022,
     professor: "Jane Doe",
     completed: true,
+    color: "pink.400",
   },
   {
     id: "7",
@@ -75,5 +81,6 @@ export const sampleCourses: Course[] = [
     year: 2022,
     professor: "Mark Smith",
     completed: true,
+    color: "orange.400",
   },
 ];

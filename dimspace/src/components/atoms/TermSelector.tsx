@@ -1,3 +1,4 @@
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import {
   Button,
   Heading,
@@ -28,7 +29,8 @@ const TermSelector = ({
             textDecoration: "underline",
           }}
         >
-          {term}
+          Term: {term}
+          {isOpen ? <ChevronUpIcon ml={2} /> : <ChevronDownIcon ml={2} />}
         </Heading>
       </PopoverTrigger>
       <PopoverContent>

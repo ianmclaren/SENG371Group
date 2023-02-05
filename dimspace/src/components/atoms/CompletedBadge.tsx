@@ -10,7 +10,7 @@ const CompletedBadge = () => {
         top={4}
         right={4}
         fontSize="xl"
-        color="green.500"
+        color="white"
       />
     </Tooltip>
   );
