@@ -1,17 +1,4 @@
-import {
-  Button,
-  HStack,
-  Icon,
-  IconButton,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Icon } from "@chakra-ui/react";
 import { BsPersonFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 

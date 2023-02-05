@@ -1,9 +1,11 @@
-import { Heading, HStack, IconButton, Spacer, VStack } from "@chakra-ui/react";
+import { Heading, HStack, Input, Spacer, VStack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { Term } from "../../utils/types";
 import CalendarButton from "../atoms/CalendarButton";
 import MessagesButton from "../atoms/MessagesButton";
 import NotificationButton from "../atoms/NotificationButton";
 import ProfileButton from "../atoms/ProfileButton";
+import TermSelector from "../atoms/TermSelector";
 
 const HeaderButtons = () => {
   return (
@@ -16,8 +18,15 @@ const HeaderButtons = () => {
   );
 };
 
-const Header = () => {
+const Header = ({
+  term,
+  setTerm,
+}: {
+  term: Term;
+  setTerm: (term: Term) => void;
+}) => {
   const navigate = useNavigate();
+
   return (
     <HStack w="100%" p={4}>
       <VStack align="start">
@@ -26,13 +35,16 @@ const Header = () => {
           size="xl"
           onClick={() => navigate("/")}
           cursor="pointer"
+          _hover={{
+            textDecoration: "underline",
+          }}
         >
           DimSpace
         </Heading>
-        <Heading fontWeight="light" size="md">
-          Summer 2023
-        </Heading>
+        <TermSelector term={term} setTerm={setTerm} />
       </VStack>
+      <Spacer />
+      <Input placeholder="Search" w="50%" size="lg" variant="filled" />
       <Spacer />
       <HeaderButtons />
     </HStack>
