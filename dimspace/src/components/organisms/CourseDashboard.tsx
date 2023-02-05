@@ -7,14 +7,14 @@ import { useState } from "react";
 const CourseDashboard = () => {
   const [displayCompleted, setDisplayCompleted] = useState(true);
   return (
-    <Box>
+    <Box p={4}>
       <HStack
-        px={4}
         onClick={() => setDisplayCompleted(!displayCompleted)}
         cursor="pointer"
         _hover={{
           textDecoration: "underline",
         }}
+        justify="end"
       >
         <Icon as={displayCompleted ? BsEye : BsEyeSlash} fontSize="xl" />
         <Text fontSize="xl">
@@ -22,7 +22,7 @@ const CourseDashboard = () => {
           completed courses
         </Text>
       </HStack>
-      <Flex gap={4} p={8} wrap="wrap" justify="center" align="stretch">
+      <Flex gap={4} p={4} wrap="wrap" justify="center" align="stretch">
         {sampleCourses.map((course) => {
           return course.completed ? (
             displayCompleted && <CourseCard course={course} />
