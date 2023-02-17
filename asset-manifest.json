@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/ianmclaren/SENG371Group/static/js/main.025be6b1.js",
+    "static/js/787.fcc37f75.chunk.js": "/ianmclaren/SENG371Group/static/js/787.fcc37f75.chunk.js",
+    "index.html": "/ianmclaren/SENG371Group/index.html",
+    "main.025be6b1.js.map": "/ianmclaren/SENG371Group/static/js/main.025be6b1.js.map",
+    "787.fcc37f75.chunk.js.map": "/ianmclaren/SENG371Group/static/js/787.fcc37f75.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.025be6b1.js"
+  ]
+}
