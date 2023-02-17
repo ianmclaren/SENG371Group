@@ -14,7 +14,7 @@ const theme = extendTheme({
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <DimSpace />
     </BrowserRouter>
   </ChakraProvider>
