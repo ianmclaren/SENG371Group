@@ -7,20 +7,35 @@
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
+  OR
+- [Docker](https://www.docker.com/)
 
-### Installation
+### Install and Run with Node
 
-Enter the correct folder `dimspace/` and install the dependencies:
+Install the dependencies:
 
 ```bash
-cd dimspace
 npm install
 ```
 
-### Run
+Run it:
 
 ```bash
 npm start
+```
+
+### Install and Run with Docker
+
+Build the image:
+
+```bash
+docker build -t dimspace .
+```
+
+Run it:
+
+```bash
+docker run -p 3000:3000 dimspace
 ```
 
 ## Team members

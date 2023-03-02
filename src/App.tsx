@@ -1,5 +1,5 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import DimSpace from "./components";
 
 const theme = extendTheme({
@@ -14,8 +14,8 @@ const theme = extendTheme({
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <BrowserRouter>
+    <HashRouter>
       <DimSpace />
-    </BrowserRouter>
+    </HashRouter>
   </ChakraProvider>
 );
