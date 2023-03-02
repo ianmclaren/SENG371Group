@@ -1,9 +1,11 @@
-import { Box, Heading, Spacer, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, HStack, Spacer, Text, VStack } from "@chakra-ui/react";
 import { Course } from "../../utils/types";
 import CompletedBadge from "../atoms/CompletedBadge";
 import NotificationAlert from "../atoms/NotificationAlert";
+import { useNavigate } from "react-router-dom";
 
 const CourseCard = ({ course }: { course: Course }) => {
+  const navigate = useNavigate();
   return (
     <VStack
       border="1px"
@@ -20,14 +22,18 @@ const CourseCard = ({ course }: { course: Course }) => {
       align="start"
       pos="relative"
       bgColor={course.color ?? "gray.100"}
+
+      onClick={() => navigate(`/${course.id}/Home`)}
     >
       {course.completed && <CompletedBadge />}
       <Spacer />
       <Box bgColor="gray.200" w="100%" p={3}>
-        {course.notifications && (
+        <HStack>
+          <Heading fontWeight="medium">{course.name}</Heading>
+          {course.notifications && (
           <NotificationAlert messages={course.notifications} />
-        )}
-        <Heading fontWeight="medium">{course.name}</Heading>
+          )}
+        </HStack>
         <Text fontSize="lg">{course.professor}</Text>
       </Box>
     </VStack>
