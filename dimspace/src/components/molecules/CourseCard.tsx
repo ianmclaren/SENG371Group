@@ -23,7 +23,10 @@ const CourseCard = ({ course }: { course: Course }) => {
       pos="relative"
       bgColor={course.color ?? "gray.100"}
 
-      onClick={() => navigate(`/${course.id}/Home`)}
+      onClick={() => navigate({
+        pathname: '/courses',
+        search: `?courseID=${course.id}&week=1`,
+      })}
     >
       {course.completed && <CompletedBadge />}
       <Spacer />

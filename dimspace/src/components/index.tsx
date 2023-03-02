@@ -5,7 +5,13 @@ import { Term } from "../utils/types";
 import Header from "./common/Header";
 import CourseDashboard from "./organisms/CourseDashboard";
 import ProfilePage from "./organisms/ProfilePage";
-import CoursePage from "./organisms/CoursePage";
+import CourseHome from "./organisms/CourseHome";
+import CourseContents from "./organisms/CourseContents";
+import CourseAssignments from "./organisms/CourseAssignments";
+import CourseQuizzes from "./organisms/CourseQuizzes";
+import CourseDiscussions from "./organisms/CourseDiscussions";
+import CourseGroups from "./organisms/CourseGroups";
+import CourseGrades from "./organisms/CourseGrades";
 
 const DimSpace = () => {
   const [term, setTerm] = useState<Term>("Spring 2023");
@@ -17,7 +23,13 @@ const DimSpace = () => {
       <Routes>
         <Route path="/" element={<CourseDashboard term={term} />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/:courseID/Home" element={<CoursePage />} />
+        <Route path="/courses" element={<CourseHome />} />
+        <Route path="/courses/contents" element={<CourseContents />}/>
+        <Route path="/courses/assignments" element={<CourseAssignments />}/>
+        <Route path="/courses/quizzes" element={<CourseQuizzes />}/>
+        <Route path="/courses/discussions" element={<CourseDiscussions />}/>
+        <Route path="/courses/groups" element={<CourseGroups />}/>
+        <Route path="/courses/grades" element={<CourseGrades />}/>
       </Routes>
     </Box>
   );
