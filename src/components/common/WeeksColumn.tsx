@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const WeeksColumn = ({courseID}: {courseID: string;}) => {
     const navigate = useNavigate();
-    const pathname =window.location.pathname;
+    const pathname =window.location.hash.split('?')[0].slice(1,);
     return (
           <VStack>
             <Box paddingTop={4} paddingLeft={5}>

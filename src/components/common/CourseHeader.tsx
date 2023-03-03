@@ -19,7 +19,7 @@ const CourseHeader = ({courseID}: {courseID: string;}) => {
                   transition="all 0.1s ease-in-out"
                   onClick={() => navigate({
                     pathname: '/courses',
-                    search: `?courseID=${courseID}`,
+                    search: `?courseID=${courseID}&week=1`,
                   })}>
                   <Text fontWeight="medium">Home</Text>
                 </Box>
