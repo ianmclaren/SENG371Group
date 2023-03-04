@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, VStack, UnorderedList, ListItem, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer} from "@chakra-ui/react";
+import { Box, Heading, HStack, VStack, Table, Thead, Tbody, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import CourseHeader from "../common/CourseHeader";
 import WeeksColumn from "../common/WeeksColumn";
