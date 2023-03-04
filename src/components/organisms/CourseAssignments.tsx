@@ -8,7 +8,7 @@ const CourseAssignments = () => {
     var id = queryParameters.get("courseID");
     const courseID = id == null ? '' : id; // edit if you know a more graceful way to handle the null
     var week = queryParameters.get("week");
-    const weekID = week == null ? '' : id;
+    //const weekID = week == null ? '' : id;
 
     return (
         <Box>
