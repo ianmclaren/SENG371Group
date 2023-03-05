@@ -9,9 +9,11 @@ import CourseHome from "./organisms/CourseHome";
 import CourseContents from "./organisms/CourseContents";
 import CourseAssignments from "./organisms/CourseAssignments";
 import CourseQuizzes from "./organisms/CourseQuizzes";
-import CourseDiscussions from "./organisms/CourseDiscussions";
+import CourseDiscussions from "./pages/Discussions/CourseDiscussions";
 import CourseGroups from "./organisms/CourseGroups";
 import CourseGrades from "./organisms/CourseGrades";
+import CreateDiscussion from "./pages/Discussions/CreateDiscussion";
+import SingleDiscussion from "./pages/Discussions/SingleDiscussion";
 
 const DimSpace = () => {
   const [term, setTerm] = useState<Term>("Spring 2023");
@@ -28,6 +30,8 @@ const DimSpace = () => {
         <Route path="/courses/assignments" element={<CourseAssignments />}/>
         <Route path="/courses/quizzes" element={<CourseQuizzes />}/>
         <Route path="/courses/discussions" element={<CourseDiscussions />}/>
+        <Route path="/courses/discussions/create" element={<CreateDiscussion />}/>
+        <Route path="/courses/discussions/single" element={<SingleDiscussion />}/>
         <Route path="/courses/groups" element={<CourseGroups />}/>
         <Route path="/courses/grades" element={<CourseGrades />}/>
       </Routes>
