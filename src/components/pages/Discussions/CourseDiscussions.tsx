@@ -1,8 +1,8 @@
-import { Box, VStack, Heading, Flex } from "@chakra-ui/react";
+import { Box, VStack, Flex } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import CourseHeader from "../../common/CourseHeader";
 import WeeksColumn from "../../common/WeeksColumn";
-import DiscussionCard from "../../molecules/DiscussionCard";
+import DiscussionTable from "../../molecules/DiscussionTable";
 import DiscussionsHeader from "../../molecules/DiscussionHeader";
 import { sampleDiscussions } from "../../../utils/sampleData";
 
@@ -22,15 +22,7 @@ const CourseDiscussions = () => {
         <WeeksColumn courseID={courseID} />
         <VStack w="100%" mt={6}>
           <DiscussionsHeader />
-          {discussions.length > 0 ? (
-            discussions.map((discussion) => (
-              <DiscussionCard discussion={discussion} />
-            ))
-          ) : (
-            <Heading fontWeight="medium" fontSize="medium">
-              There are no active discussion topics
-            </Heading>
-          )}
+          <DiscussionTable discussions={discussions} />
         </VStack>
       </Flex>
     </Box>
