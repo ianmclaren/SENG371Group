@@ -9,7 +9,7 @@ import { sampleDiscussions } from "../../../utils/sampleData";
 const CourseDiscussions = () => {
   const [queryParameters] = useSearchParams();
   const id = queryParameters.get("courseID") || "";
-  const courseID = id == null ? '': id; // edit if you know a more graceful way to handle the null
+  const courseID = id == null ? "" : id; // edit if you know a more graceful way to handle the null
   const discussions = sampleDiscussions.filter(
     (discussion) => discussion.courseID === courseID
   );
@@ -20,7 +20,7 @@ const CourseDiscussions = () => {
       <Box w="100%" h={0.5} bgColor="white" />
       <Flex justifyContent="space-between">
         <WeeksColumn courseID={courseID} />
-        <VStack w="80%" marginTop={12}>
+        <VStack w="100%" mt={6}>
           <DiscussionsHeader />
           {discussions.length > 0 ? (
             discussions.map((discussion) => (
@@ -32,7 +32,6 @@ const CourseDiscussions = () => {
             </Heading>
           )}
         </VStack>
-        <Box w="20%" />
       </Flex>
     </Box>
   );
