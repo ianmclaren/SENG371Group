@@ -13,6 +13,9 @@ on:
         required: true
         default: "gh-pages"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
