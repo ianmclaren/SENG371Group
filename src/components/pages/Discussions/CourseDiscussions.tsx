@@ -20,10 +20,12 @@ const CourseDiscussions = () => {
       <Box w="100%" h={0.5} bgColor="white" />
       <Flex justifyContent="space-between">
         <WeeksColumn courseID={courseID} />
-        <VStack w="100%" mt={6}>
-          <DiscussionsHeader />
-          <DiscussionTable discussions={discussions} />
-        </VStack>
+        <Flex w="100%" justifyContent="center" mt={6}>
+          <VStack w="80%" maxW="1000px" mt={6}>
+            <DiscussionsHeader />
+            <DiscussionTable discussions={discussions} />
+          </VStack>
+        </Flex>
       </Flex>
     </Box>
   );

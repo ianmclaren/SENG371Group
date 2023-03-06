@@ -11,8 +11,8 @@ const DiscussionTable = ({discussions}: {discussions: Discussion[];}) => {
     };
 
     return (
-        <Box p={4} w="60%" maxW="1000px">
-            <Table variant="simple" size="sm" borderRadius="md" backgroundColor="gray.200">
+        <Box w="100%" p={4} >
+            <Table variant="simple" size="md" borderRadius="md" backgroundColor="gray.200">
                 <Thead>
                     <Tr>
                         <Th fontSize="medium" >Topic</Th>
