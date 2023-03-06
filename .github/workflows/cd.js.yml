@@ -9,11 +9,9 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Branch to deploy'
+        description: "Branch to deploy"
         required: true
-        default: 'gh-pages'
-
-on: [workflow_dispatch]
+        default: "gh-pages"
 
 jobs:
   build:
