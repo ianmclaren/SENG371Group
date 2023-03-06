@@ -120,6 +120,181 @@ export const sampleDiscussions: Discussion[] = [
       }
     ],
     author: "Andrea Wilson",
+  },
+  {
+    courseID: "2",
+    id: "1",
+    topic: "What is the best way to study for the midterm?",
+    date: "2022-09-01",
+    numberReplies: 2,
+    replies: [
+      {
+        date: "2022-09-08",
+        content: "I think the best way to study is to go over the notes and practice problems.",
+        author: "Lily Adams",
+      },
+      {
+        date: "2022-09-09",
+        content: "I agree with Lily. I also think it's important to make sure you understand the concepts.",
+        author: "Jack Hunter",
+      }
+    ],
+    author: "Edward Brown",
+  },
+  {
+    courseID: "2",
+    id: "2",
+    topic: "Is the final project going to be in groups?",
+    date: "2022-10-01",
+    numberReplies: 1,
+    replies: [
+      {
+        date: "2022-10-08",
+        content: "Yes, the final project will be in groups. We will be forming groups in the next lab.",
+        author: "Professor Fisher", 
+      }
+    ],
+    author: "Andrea Wilson",
+  },
+  {
+    courseID: "3",
+    id: "1",
+    topic: "What is the best way to study for the midterm?",
+    date: "2022-09-01",
+    numberReplies: 2,
+    replies: [
+      {
+        date: "2022-09-08",
+        content: "I think the best way to study is to go over the notes and practice problems.",
+        author: "Lily Adams",
+      },
+      {
+        date: "2022-09-09",
+        content: "I agree with Lily. I also think it's important to make sure you understand the concepts.",
+        author: "Jack Hunter",
+      }
+    ],
+    author: "Edward Brown",
+  },
+  {
+    courseID: "3",
+    id: "2",
+    topic: "Is the final project going to be in groups?",
+    date: "2022-10-01",
+    numberReplies: 1,
+    replies: [
+      {
+        date: "2022-10-08",
+        content: "Yes, the final project will be in groups. We will be forming groups in the next lab.",
+        author: "Professor Fisher", 
+      }
+    ],
+    author: "Andrea Wilson",
+  },
+  {
+    courseID: "4",
+    id: "1",
+    topic: "What is the best way to study for the midterm?",
+    date: "2022-09-01",
+    numberReplies: 2,
+    replies: [
+      {
+        date: "2022-09-08",
+        content: "I think the best way to study is to go over the notes and practice problems.",
+        author: "Lily Adams",
+      },
+      {
+        date: "2022-09-09",
+        content: "I agree with Lily. I also think it's important to make sure you understand the concepts.",
+        author: "Jack Hunter",
+      }
+    ],
+    author: "Edward Brown",
+  },
+  {
+    courseID: "4",
+    id: "2",
+    topic: "Is the final project going to be in groups?",
+    date: "2022-10-01",
+    numberReplies: 1,
+    replies: [
+      {
+        date: "2022-10-08",
+        content: "Yes, the final project will be in groups. We will be forming groups in the next lab.",
+        author: "Professor Fisher", 
+      }
+    ],
+    author: "Andrea Wilson",
+  },
+  {
+    courseID: "5",
+    id: "1",
+    topic: "What is the best way to study for the midterm?",
+    date: "2022-09-01",
+    numberReplies: 2,
+    replies: [
+      {
+        date: "2022-09-08",
+        content: "I think the best way to study is to go over the notes and practice problems.",
+        author: "Lily Adams",
+      },
+      {
+        date: "2022-09-09",
+        content: "I agree with Lily. I also think it's important to make sure you understand the concepts.",
+        author: "Jack Hunter",
+      }
+    ],
+    author: "Edward Brown",
+  },
+  {
+    courseID: "5",
+    id: "2",
+    topic: "Is the final project going to be in groups?",
+    date: "2022-10-01",
+    numberReplies: 1,
+    replies: [
+      {
+        date: "2022-10-08",
+        content: "Yes, the final project will be in groups. We will be forming groups in the next lab.",
+        author: "Professor Fisher", 
+      }
+    ],
+    author: "Andrea Wilson",
+  },
+  {
+    courseID: "6",
+    id: "1",
+    topic: "What is the best way to study for the midterm?",
+    date: "2022-09-01",
+    numberReplies: 2,
+    replies: [
+      {
+        date: "2022-09-08",
+        content: "I think the best way to study is to go over the notes and practice problems.",
+        author: "Lily Adams",
+      },
+      {
+        date: "2022-09-09",
+        content: "I agree with Lily. I also think it's important to make sure you understand the concepts.",
+        author: "Jack Hunter",
+      }
+    ],
+    author: "Edward Brown",
+  },
+  {
+    courseID: "6",
+    id: "2",
+    topic: "Is the final project going to be in groups?",
+    date: "2022-10-01",
+    numberReplies: 1,
+    replies: [
+      {
+        date: "2022-10-08",
+        content: "Yes, the final project will be in groups. We will be forming groups in the next lab.",
+        author: "Professor Fisher", 
+      }
+    ],
+    author: "Andrea Wilson",
   }
 ];
 
