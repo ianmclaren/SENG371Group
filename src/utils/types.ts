@@ -20,3 +20,19 @@ export type Course = {
   notifications?: string[];
   color?: string;
 };
+
+export type Discussion = {
+  courseID: string;
+  id: string;
+  topic: string;
+  date: string;
+  numberReplies: number;
+  author: string;
+  replies: Reply[];
+};
+
+export type Reply = {
+  date: string;
+  content: string;
+  author: string;
+}
