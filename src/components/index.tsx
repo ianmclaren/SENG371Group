@@ -32,7 +32,10 @@ const DimSpace = () => {
           <Route path="quizzes" element={<CourseQuizzes />} />
           <Route path="discussions" element={<CourseDiscussions />} />
           <Route path="discussions/create" element={<CreateDiscussion />} />
-          <Route path="discussions/single" element={<SingleDiscussion />} />
+          <Route
+            path="discussion/:discussionid"
+            element={<SingleDiscussion />}
+          />
           <Route path="groups" element={<CourseGroups />} />
           <Route path="grades" element={<CourseGrades />} />
         </Route>

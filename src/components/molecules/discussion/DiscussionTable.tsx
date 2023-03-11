@@ -8,17 +8,15 @@ import {
   Tbody,
   Td,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Discussion } from "../../../utils/types";
 
 const DiscussionTable = ({ discussions }: { discussions: Discussion[] }) => {
   const navigate = useNavigate();
-  const pathname = window.location.hash.split("?")[0].slice(1);
+  const { courseid } = useParams();
 
   const handleDiscussionClick = (courseID: string, discussionID: string) => {
-    navigate(
-      `${pathname}/single?courseID=${courseID}&discussionID=${discussionID}`
-    );
+    navigate(`/course/${courseid}/discussion/${discussionID}`);
   };
 
   return (
