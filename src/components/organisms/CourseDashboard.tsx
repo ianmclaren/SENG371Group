@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, HStack, Icon, Text } from "@chakra-ui/react";
 import { sampleCourses } from "../../utils/sampleData";
-import CourseCard from "../molecules/CourseCard";
+import CourseCard from "../molecules/course/CourseCard";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { Term } from "../../utils/types";
@@ -39,7 +39,9 @@ const CourseDashboard = ({ term }: { term: Term }) => {
         maxW={["100%", "90%", "70%"]}
       >
         {filteredCourses.length > 0 ? (
-          filteredCourses.map((course) => <CourseCard course={course} />)
+          filteredCourses.map((course) => (
+            <CourseCard key={course.id} course={course} />
+          ))
         ) : (
           <Heading fontWeight="medium">Uh oh... no courses found</Heading>
         )}

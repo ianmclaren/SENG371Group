@@ -35,4 +35,4 @@ export type Reply = {
   date: string;
   content: string;
   author: string;
-}
+};
