@@ -14,7 +14,7 @@ const CourseHeader = () => {
       bgColor: "gray.700",
       _hover: { bgColor: "gray.600" },
     },
-    _active: { bgColor: "gray.500" },
+    _active: { bgColor: "gray.500", _dark: { bgColor: "gray.800" } },
   };
 
   return (
