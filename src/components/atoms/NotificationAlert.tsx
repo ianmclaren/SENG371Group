@@ -30,10 +30,10 @@ const NotificationAlert = ({ messages }: { messages: string[] }) => {
         <PopoverContent>
           <Box p={3}>
             {messages.map((message, index) => (
-              <>
-                <Text key={index}>{message}</Text>
+              <Box key={index}>
+                <Text>{message}</Text>
                 {index !== messages.length - 1 && <Divider my={2} />}
-              </>
+              </Box>
             ))}
           </Box>
         </PopoverContent>

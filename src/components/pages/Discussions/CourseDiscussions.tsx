@@ -1,31 +1,25 @@
 import { Box, VStack, Flex } from "@chakra-ui/react";
-import { useSearchParams } from "react-router-dom";
-import CourseHeader from "../../common/CourseHeader";
-import WeeksColumn from "../../common/WeeksColumn";
-import DiscussionTable from "../../molecules/DiscussionTable";
-import DiscussionsHeader from "../../molecules/DiscussionHeader";
+import { useParams } from "react-router-dom";
+import CourseHeader from "../../molecules/course/CourseHeader";
+import DiscussionTable from "../../molecules/discussion/DiscussionTable";
+import DiscussionsHeader from "../../molecules/discussion/DiscussionHeader";
 import { sampleDiscussions } from "../../../utils/sampleData";
 
 const CourseDiscussions = () => {
-  const [queryParameters] = useSearchParams();
-  const id = queryParameters.get("courseID") || "";
-  const courseID = id == null ? "" : id; // edit if you know a more graceful way to handle the null
+  let { courseid } = useParams();
   const discussions = sampleDiscussions.filter(
-    (discussion) => discussion.courseID === courseID
+    (discussion) => discussion.courseID === courseid
   );
 
   return (
     <Box>
-      <CourseHeader courseID={courseID} />
+      <CourseHeader courseID={courseid ?? ""} />
       <Box w="100%" h={0.5} bgColor="white" />
-      <Flex justifyContent="space-between">
-        <WeeksColumn courseID={courseID} />
-        <Flex w="100%" justifyContent="center" mt={6}>
-          <VStack w="80%" maxW="1000px" mt={6}>
-            <DiscussionsHeader />
-            <DiscussionTable discussions={discussions} />
-          </VStack>
-        </Flex>
+      <Flex w="100%" justifyContent="center" mt={6}>
+        <VStack w="80%" maxW="1000px" mt={6}>
+          <DiscussionsHeader />
+          <DiscussionTable discussions={discussions} />
+        </VStack>
       </Flex>
     </Box>
   );
