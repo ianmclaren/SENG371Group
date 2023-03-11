@@ -8,7 +8,7 @@ const CourseContents = () => {
 
   return (
     <Box>
-      <CourseHeader courseID={courseid ?? ""} weekID={weekid ?? ""} />
+      <CourseHeader />
       <Box w="100%" h={0.5} bgColor="white" />
       <HStack>
         <WeeksColumn courseID={courseid ?? ""} />

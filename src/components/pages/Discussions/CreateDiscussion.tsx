@@ -23,7 +23,7 @@ const CreateDiscussion = () => {
 
   return (
     <Box>
-      <CourseHeader courseID={courseid ?? ""} />
+      <CourseHeader />
       <Box w="100%" h={0.5} bgColor="white" />
       <Flex justifyContent="space-between">
         <Flex w="100%" justifyContent="center" mt={6}>

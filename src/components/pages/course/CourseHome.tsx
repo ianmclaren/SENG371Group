@@ -9,7 +9,7 @@ const CourseHome = () => {
 
   return (
     <Box>
-      <CourseHeader courseID={courseid ?? "No ID"} />
+      <CourseHeader />
       <Box w="100%" h={0.5} bgColor="white" />
       <HStack p={4}>
         <Heading fontWeight="light" size="lg">

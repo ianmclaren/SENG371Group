@@ -19,7 +19,13 @@ const DimSpace = () => {
   const [term, setTerm] = useState<Term>("Spring 2023");
 
   return (
-    <Box bgColor="gray.300" minH="100vh">
+    <Box
+      bgColor="gray.300"
+      _dark={{
+        bgColor: "gray.700",
+      }}
+      minH="100vh"
+    >
       <Header term={term} setTerm={setTerm} />
       <Box w="100%" h={0.5} bgColor="white" />
       <Routes>

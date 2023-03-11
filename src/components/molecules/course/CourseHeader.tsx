@@ -1,115 +1,101 @@
 import { ButtonGroup, Button, Center } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-const CourseHeader = ({
-  courseID,
-  weekID,
-}: {
-  courseID: string;
-  weekID?: string;
-}) => {
+const CourseHeader = () => {
   const navigate = useNavigate();
+  const { courseid, discussionid, weekid } = useParams();
 
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
+  const buttonStyle = {
+    bgColor: "gray.200",
+    _hover: { bgColor: "gray.400" },
+    _dark: {
+      bgColor: "gray.700",
+      _hover: { bgColor: "gray.600" },
+    },
+    _active: { bgColor: "gray.500" },
+  };
 
   return (
     <Center>
       <ButtonGroup isAttached m={1} gap={1}>
         <Button
-          bgColor={pathname === `/course/${courseID}` ? "gray.500" : "gray.200"}
-          _hover={{ bgColor: "gray.400" }}
+          {...buttonStyle}
+          isActive={pathname === `/course/${courseid}`}
           onClick={() => {
             navigate({
-              pathname: `/course/${courseID}`,
+              pathname: `/course/${courseid}`,
             });
           }}
         >
           Home
         </Button>
         <Button
-          bgColor={
-            pathname === `/course/${courseID}/content/${weekID}`
-              ? "gray.500"
-              : "gray.200"
-          }
-          _hover={{ bgColor: "gray.400" }}
+          {...buttonStyle}
+          isActive={pathname === `/course/${courseid}/content/${weekid}`}
           onClick={() => {
             navigate({
-              pathname: `/course/${courseID}/content/1`,
+              pathname: `/course/${courseid}/content/1`,
             });
           }}
         >
           Contents
         </Button>
         <Button
-          bgColor={
-            pathname === `/course/${courseID}/assignments`
-              ? "gray.500"
-              : "gray.200"
-          }
-          _hover={{ bgColor: "gray.400" }}
+          {...buttonStyle}
+          isActive={pathname === `/course/${courseid}/assignments`}
           onClick={() => {
             navigate({
-              pathname: `/course/${courseID}/assignments`,
+              pathname: `/course/${courseid}/assignments`,
             });
           }}
         >
           Assignments
         </Button>
         <Button
-          bgColor={
-            pathname === `/course/${courseID}/quizzes` ? "gray.500" : "gray.200"
-          }
-          _hover={{ bgColor: "gray.400" }}
+          {...buttonStyle}
+          isActive={pathname === `/course/${courseid}/quizzes`}
           onClick={() => {
             navigate({
-              pathname: `/course/${courseID}/quizzes`,
+              pathname: `/course/${courseid}/quizzes`,
             });
           }}
         >
           Quizzes
         </Button>
         <Button
-          bgColor={
-            pathname === `/course/${courseID}/discussions`
-              ? "gray.500"
-              : "gray.200"
+          {...buttonStyle}
+          isActive={
+            pathname === `/course/${courseid}/discussions` ||
+            pathname === `/course/${courseid}/discussion/${discussionid}` ||
+            pathname === `/course/${courseid}/discussions/create`
           }
-          _hover={{ bgColor: "gray.400" }}
           onClick={() => {
             navigate({
-              pathname: `/course/${courseID}/discussions`,
+              pathname: `/course/${courseid}/discussions`,
             });
           }}
         >
           Discussions
         </Button>
         <Button
-          bgColor={
-            pathname === `/course/${courseID}/groups` ? "gray.500" : "gray.200"
-          }
-          _hover={{ bgColor: "gray.400" }}
+          {...buttonStyle}
+          isActive={pathname === `/course/${courseid}/groups`}
           onClick={() => {
             navigate({
-              pathname: `/course/${courseID}/groups`,
+              pathname: `/course/${courseid}/groups`,
             });
           }}
         >
           Groups
         </Button>
         <Button
-          bgColor={
-            pathname === `/course/${courseID}/grades` ? "gray.500" : "gray.200"
-          }
-          _hover={{ bgColor: "gray.400" }}
+          {...buttonStyle}
+          isActive={pathname === `/course/${courseid}/grades`}
           onClick={() => {
             navigate({
-              pathname: `/course/${courseID}/grades`,
+              pathname: `/course/${courseid}/grades`,
             });
           }}
         >

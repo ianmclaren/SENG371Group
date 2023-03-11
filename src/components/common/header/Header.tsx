@@ -2,6 +2,7 @@ import { Heading, HStack, Input, Spacer, VStack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Term } from "../../../utils/types";
 import CalendarButton from "../../atoms/CalendarButton";
+import DarkModeButton from "../../atoms/DarkModeButton";
 import MessagesButton from "../../atoms/MessagesButton";
 import NotificationButton from "../../atoms/NotificationButton";
 import ProfileButton from "../../atoms/ProfileButton";
@@ -10,6 +11,7 @@ import TermSelector from "../../atoms/TermSelector";
 const HeaderButtons = () => {
   return (
     <HStack spacing={0}>
+      <DarkModeButton />
       <MessagesButton />
       <CalendarButton />
       <NotificationButton />

@@ -13,7 +13,7 @@ const CourseDiscussions = () => {
 
   return (
     <Box>
-      <CourseHeader courseID={courseid ?? ""} />
+      <CourseHeader />
       <Box w="100%" h={0.5} bgColor="white" />
       <Flex w="100%" justifyContent="center" mt={6}>
         <VStack w="80%" maxW="1000px" mt={6}>
