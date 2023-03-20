@@ -1,4 +1,4 @@
-import { Box, Heading, VStack, HStack, Spacer, Text, color} from "@chakra-ui/react";
+import { Box, Heading, VStack, HStack, Spacer, Text} from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { sampleCourses } from "../../../utils/sampleData";
 import CourseHeader from "../../molecules/course/CourseHeader";
