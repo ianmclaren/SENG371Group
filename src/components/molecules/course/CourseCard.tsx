@@ -10,6 +10,9 @@ const CourseCard = ({ course }: { course: Course }) => {
     <VStack
       border="1px"
       borderColor="gray.400"
+      _dark={{
+        borderColor: "gray.600",
+      }}
       minW="250px"
       maxW="400px"
       flexGrow={1}
@@ -30,7 +33,14 @@ const CourseCard = ({ course }: { course: Course }) => {
     >
       {course.completed && <CompletedBadge />}
       <Spacer />
-      <Box bgColor="gray.200" w="100%" p={3}>
+      <Box
+        bgColor="gray.200"
+        _dark={{
+          bgColor: "gray.600",
+        }}
+        w="100%"
+        p={3}
+      >
         <HStack>
           <Heading fontWeight="medium">{course.name}</Heading>
           {course.notifications && (

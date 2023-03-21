@@ -1,5 +1,5 @@
-import { Box, Text, VStack, Flex } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Center, Heading, VStack } from "@chakra-ui/react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const WeeksColumn = ({ courseID }: { courseID: string }) => {
   const navigate = useNavigate();
@@ -12,36 +12,32 @@ const WeeksColumn = ({ courseID }: { courseID: string }) => {
     });
   };
 
+  const { weekid } = useParams();
+
   return (
-    <VStack>
-      <Box paddingTop={4} paddingLeft={5}>
-        <Text fontWeight="medium">Week</Text>
-      </Box>
-      <Flex
-        gap={2}
-        p={3}
-        flexDirection="column"
-        wrap={"wrap"}
-        align="stretch"
-        mx="auto"
-        maxW={["100%", "90%", "70%"]}
-      >
+    <VStack p={3}>
+      <Heading size="sm">Week</Heading>
+      <VStack spacing={2} align="stretch" w="100%">
         {weeks.map((week) => (
-          <Box
+          <Center
             key={week}
-            bgColor="gray.200"
-            p={1}
-            borderRadius={20}
-            paddingInline={4}
+            bgColor={weekid === week.toString() ? "gray.400" : "gray.100"}
+            color="black"
+            _dark={{
+              bgColor: weekid === week.toString() ? "gray.400" : "gray.600",
+              color: "white",
+              _hover: { bgColor: "gray.500" },
+            }}
+            py={1}
+            borderRadius="full"
             cursor="pointer"
-            _hover={{ shadow: "xl" }}
-            transition="all 0.1s ease-in-out"
+            _hover={{ shadow: "xl", bgColor: "gray.400" }}
             onClick={() => handleWeekClick(week)}
           >
-            <Text fontWeight="medium">{week}</Text>
-          </Box>
+            {week}
+          </Center>
         ))}
-      </Flex>
+      </VStack>
     </VStack>
   );
 };
