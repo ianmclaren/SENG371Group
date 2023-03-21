@@ -19,6 +19,7 @@ export type Course = {
   completed: boolean;
   notifications?: string[];
   color?: string;
+  darkColor?: string;
 };
 
 export type Discussion = {

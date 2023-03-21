@@ -14,7 +14,7 @@ const CourseDashboard = ({ term }: { term: Term }) => {
 
   const textStyle = {
     _dark: {
-      bgColor: "#adb6c3",
+      bgColor: "gray.300",
       color: "black"
     },
   };

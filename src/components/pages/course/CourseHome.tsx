@@ -10,12 +10,12 @@ const CourseHome = () => {
 const courseHeaderStyle = {
   bgColor: course?.color,
   _dark: {
-    bgColor: course?.color?.split('.')[0] + '.' + (Number(course?.color?.split('.')[1]) + 300).toString(),
+    bgColor: course?.darkColor,
   },
 }
 const textStyle = {
   _dark: {
-    bgColor: "#adb6c3",
+    bgColor: "gray.300",
     color: "black"
   },
 };

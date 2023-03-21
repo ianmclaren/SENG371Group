@@ -11,6 +11,7 @@ export const sampleCourses: Course[] = [
     professor: "John Doe",
     completed: false,
     color: "red.400",
+    darkColor: "red.700",
   },
   {
     id: "2",
@@ -23,6 +24,7 @@ export const sampleCourses: Course[] = [
     completed: false,
     notifications: ["Midterm is coming up!"],
     color: "blue.400",
+    darkColor: "blue.700",
   },
   {
     id: "3",
@@ -34,6 +36,7 @@ export const sampleCourses: Course[] = [
     professor: "Mark Smith",
     completed: false,
     color: "green.400",
+    darkColor: "green.700",
   },
   {
     id: "4",
@@ -49,6 +52,7 @@ export const sampleCourses: Course[] = [
       "Groups are being formed for the final project in the next lab",
     ],
     color: "yellow.400",
+    darkColor: "yellow.700",
   },
   {
     id: "5",
@@ -60,6 +64,7 @@ export const sampleCourses: Course[] = [
     professor: "John Doe",
     completed: true,
     color: "purple.400",
+    darkColor: "purple.700",
   },
   {
     id: "6",
@@ -71,6 +76,7 @@ export const sampleCourses: Course[] = [
     professor: "Jane Doe",
     completed: true,
     color: "pink.400",
+    darkColor: "pink.700",
   },
   {
     id: "7",
@@ -82,6 +88,7 @@ export const sampleCourses: Course[] = [
     professor: "Mark Smith",
     completed: true,
     color: "orange.400",
+    darkColor: "orange.700",
   },
 ];
 
