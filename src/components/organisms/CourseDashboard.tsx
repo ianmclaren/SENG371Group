@@ -12,6 +12,13 @@ const CourseDashboard = ({ term }: { term: Term }) => {
     .filter((course) => course.term === term || term === "All")
     .filter((course) => !course.completed || displayCompleted);
 
+  const textStyle = {
+    _dark: {
+      bgColor: "#adb6c3",
+      color: "black"
+    },
+  };
+
   return (
     <Box p={4}>
       <HStack justify="end">
@@ -29,6 +36,23 @@ const CourseDashboard = ({ term }: { term: Term }) => {
           </Text>
         </HStack>
       </HStack>
+      <Box p={2} margin={3} border="solid" borderRadius={10} borderWidth={1}>
+        <Text textAlign="center" fontWeight="medium" fontSize="xl" letterSpacing={3} textTransform="uppercase">Frequent Actions</Text>
+        <Flex gap={10} p={2} justify="center">
+          <Box bgColor="gray.200" p={2} borderRadius={20} paddingInline={10} {...textStyle}>
+            <Text>Assignment 1</Text>
+            <Text fontWeight="light" fontSize="sm">CSC 110</Text>
+          </Box>
+          <Box bgColor="gray.200" p={2} borderRadius={20} paddingInline={10} {...textStyle}>
+            <Text>Discussion 3</Text>
+            <Text fontWeight="light" fontSize="sm">BIO 150</Text>
+          </Box>
+          <Box bgColor="gray.200" p={2} borderRadius={20} paddingInline={10} {...textStyle}>
+            <Text>Partial Integration</Text>
+            <Text fontWeight="light" fontSize="sm">MATH 150 Week 3</Text>
+          </Box>
+        </Flex>
+      </Box>
       <Flex
         gap={4}
         p={4}
