@@ -1,10 +1,9 @@
 import { Center, Heading, VStack } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
+import { sampleCourses } from "../../utils/sampleData";
 
 const WeeksColumn = ({ courseID }: { courseID: string }) => {
   const navigate = useNavigate();
-
-  const weeks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   const handleWeekClick = (week: number) => {
     navigate({
@@ -12,13 +11,17 @@ const WeeksColumn = ({ courseID }: { courseID: string }) => {
     });
   };
 
+  const weeks = sampleCourses
+    .find((course) => course.id === courseID)
+    ?.content?.map((content) => content.week);
+
   const { weekid } = useParams();
 
   return (
     <VStack p={3}>
       <Heading size="sm">Week</Heading>
       <VStack spacing={2} align="stretch" w="100%">
-        {weeks.map((week) => (
+        {weeks?.map((week) => (
           <Center
             key={week}
             bgColor={weekid === week.toString() ? "gray.400" : "gray.100"}

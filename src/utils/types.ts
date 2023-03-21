@@ -19,6 +19,20 @@ export type Course = {
   completed: boolean;
   notifications?: string[];
   color?: string;
+  content?: CourseContent[];
+};
+
+export type CourseContent = {
+  week: number;
+  title: string;
+  content: string[];
+  completed: boolean;
+  resources?: Resource[];
+};
+
+export type Resource = {
+  title: string;
+  link: string;
 };
 
 export type Discussion = {
