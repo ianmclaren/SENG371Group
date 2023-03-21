@@ -5,9 +5,17 @@ import Header from "./Header";
 
 describe("Header", () => {
   it("should render title", () => {
-    render(<Header term="All" setTerm={() => {}} />, {
-      wrapper: BrowserRouter,
-    });
+    render(
+      <Header
+        term="All"
+        setTerm={() => {}}
+        searchPrompt=""
+        setSearchPrompt={() => {}}
+      />,
+      {
+        wrapper: BrowserRouter,
+      }
+    );
 
     expect(screen.getByText("DimSpace")).toBeInTheDocument();
   });

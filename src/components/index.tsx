@@ -18,6 +18,8 @@ import SingleDiscussion from "./pages/discussions/SingleDiscussion";
 const DimSpace = () => {
   const [term, setTerm] = useState<Term>("Spring 2023");
 
+  const [searchPrompt, setSearchPrompt] = useState<string>("");
+
   return (
     <Box
       bgColor="gray.300"
@@ -26,10 +28,18 @@ const DimSpace = () => {
       }}
       minH="100vh"
     >
-      <Header term={term} setTerm={setTerm} />
+      <Header
+        term={term}
+        setTerm={setTerm}
+        searchPrompt={searchPrompt}
+        setSearchPrompt={setSearchPrompt}
+      />
       <Box w="100%" h={0.5} bgColor="white" />
       <Routes>
-        <Route path="/" element={<CourseDashboard term={term} />} />
+        <Route
+          path="/"
+          element={<CourseDashboard term={term} searchPrompt={searchPrompt} />}
+        />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/course/:courseid">
           <Route index={true} path="" element={<CourseHome />} />

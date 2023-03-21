@@ -23,9 +23,13 @@ const HeaderButtons = () => {
 const Header = ({
   term,
   setTerm,
+  searchPrompt,
+  setSearchPrompt,
 }: {
   term: Term;
   setTerm: (term: Term) => void;
+  searchPrompt: string;
+  setSearchPrompt: (searchPrompt: string) => void;
 }) => {
   const navigate = useNavigate();
 
@@ -46,7 +50,14 @@ const Header = ({
         <TermSelector term={term} setTerm={setTerm} />
       </VStack>
       <Spacer />
-      <Input placeholder="Search" w="50%" size="lg" variant="filled" />
+      <Input
+        placeholder="Search"
+        w="50%"
+        size="lg"
+        variant="filled"
+        value={searchPrompt}
+        onChange={(e) => setSearchPrompt(e.target.value)}
+      />
       <Spacer />
       <HeaderButtons />
     </HStack>

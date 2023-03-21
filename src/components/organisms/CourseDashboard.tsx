@@ -5,12 +5,22 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { Term } from "../../utils/types";
 
-const CourseDashboard = ({ term }: { term: Term }) => {
+const CourseDashboard = ({
+  term,
+  searchPrompt,
+}: {
+  term: Term;
+  searchPrompt: string;
+}) => {
   const [displayCompleted, setDisplayCompleted] = useState(true);
 
   const filteredCourses = sampleCourses
     .filter((course) => course.term === term || term === "All")
     .filter((course) => !course.completed || displayCompleted);
+
+  const filteredSearch = filteredCourses.filter((course) =>
+    course.name.toLowerCase().includes(searchPrompt.toLowerCase())
+  );
 
   return (
     <Box p={4}>
@@ -38,7 +48,15 @@ const CourseDashboard = ({ term }: { term: Term }) => {
         mx="auto"
         maxW={["100%", "90%", "70%"]}
       >
-        {filteredCourses.length > 0 ? (
+        {searchPrompt ? (
+          filteredSearch.length > 0 ? (
+            filteredSearch.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))
+          ) : (
+            <Heading fontWeight="medium">Uh oh... no courses found</Heading>
+          )
+        ) : filteredCourses.length > 0 ? (
           filteredCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))
