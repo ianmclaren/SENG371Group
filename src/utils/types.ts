@@ -20,6 +20,7 @@ export type Course = {
   notifications?: string[];
   color?: string;
   content?: CourseContent[];
+  grades?: Grade[];
 };
 
 export type CourseContent = {
@@ -28,6 +29,12 @@ export type CourseContent = {
   content: string[];
   completed: boolean;
   resources?: Resource[];
+};
+
+export type Grade = {
+  name: string;
+  weight: number;
+  grade?: number;
 };
 
 export type Resource = {
