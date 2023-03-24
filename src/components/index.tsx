@@ -13,7 +13,7 @@ import CourseDiscussions from "./pages/discussions/CourseDiscussions";
 import CourseGroups from "./pages/course/CourseGroups";
 import CourseGrades from "./pages/course/CourseGrades";
 import CreateDiscussion from "./pages/discussions/CreateDiscussion";
-import SingleDiscussion from "./pages/discussions/SingleDiscussion";
+import SingleDiscussion from "./pages/discussions/ViewDiscussion";
 
 const DimSpace = () => {
   const [term, setTerm] = useState<Term>("Spring 2023");

@@ -42,6 +42,7 @@ export default function CreateDiscussion () {
               <Input
                 bg="white"
                 placeholder="Discussion Topic"
+                _dark={{color: "gray.700"}}
                 value={topic}
                 onChange={handleTopicChange}
                 onKeyDown={(e) => {
@@ -52,6 +53,7 @@ export default function CreateDiscussion () {
               />
               <Button
                 bg="gray.100"
+                _dark={{ color: "gray.700" }}
                 _hover={{ bgColor: "white" }}
                 onClick={handleSubmit}
               >
