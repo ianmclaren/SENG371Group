@@ -21,16 +21,18 @@ import CourseHeader from "../../molecules/course/CourseHeader";
 import DiscussionCard from "../../molecules/discussion/DiscussionCard";
 import ReplyCard from "../../molecules/discussion/ReplyCard";
 
-export default function ViewDiscussion () {
+export default function ViewDiscussion() {
   let { courseid, discussionid } = useParams();
 
   const [isReplyModalOpen, setIsReplyModalOpen] = useState(false);
   const [replyContent, setReplyContent] = useState("");
 
-  var discussions = JSON.parse(localStorage.getItem("discussions") || "").filter(
-    (discussion: Discussion) => discussion.courseID === courseid
-  );
-  var discussion = discussions.filter((discussion: Discussion) => discussion.id === discussionid)[0];
+  var discussions = JSON.parse(
+    localStorage.getItem("discussions") || ""
+  ).filter((discussion: Discussion) => discussion.courseID === courseid);
+  var discussion = discussions.filter(
+    (discussion: Discussion) => discussion.id === discussionid
+  )[0];
   var replies = discussion.replies;
 
   const handleReplyClick = () => {
@@ -52,7 +54,7 @@ export default function ViewDiscussion () {
     localStorage.setItem("discussions", JSON.stringify(discussions));
     setIsReplyModalOpen(false);
     setReplyContent("");
-  }
+  };
 
   return (
     <Box>
@@ -66,19 +68,29 @@ export default function ViewDiscussion () {
                 View Discussion
               </Text>
               <Button
-                _hover={{ bg: "transparent", color: "gray.600" }}
-                _dark={{ color: "black" }}
+                _hover={{ bgColor: "gray.400" }}
+                color="black"
                 border="1px"
-                backgroundColor={"gray.100"}
+                bgColor={"gray.100"}
                 rightIcon={<ChatIcon />}
                 mr={2}
                 onClick={handleReplyClick}
+                _dark={{
+                  bgColor: "gray.700",
+                  color: "white",
+                  _hover: { bgColor: "gray.600" },
+                }}
               >
                 Reply
               </Button>
             </Flex>
             <DiscussionCard discussion={discussion} />
-            <Text w="100%" textAlign="left" fontWeight="medium" fontSize="x-large">
+            <Text
+              w="100%"
+              textAlign="left"
+              fontWeight="medium"
+              fontSize="x-large"
+            >
               Replies ({discussion.numberReplies})
             </Text>
             {replies.length > 0 ? (
@@ -95,11 +107,11 @@ export default function ViewDiscussion () {
               <form>
                 <ModalBody>
                   <Box mb={4}>
-                    <Textarea 
-                      placeholder="Your reply" 
-                      value={replyContent} 
-                      onChange={(e) => setReplyContent(e.target.value)} 
-                      resize="none" 
+                    <Textarea
+                      placeholder="Your reply"
+                      value={replyContent}
+                      onChange={(e) => setReplyContent(e.target.value)}
+                      resize="none"
                     />
                   </Box>
                 </ModalBody>
@@ -118,7 +130,7 @@ export default function ViewDiscussion () {
       </Flex>
     </Box>
   );
-};
+}
 
 function getCurrentDate() {
   var date = new Date();
