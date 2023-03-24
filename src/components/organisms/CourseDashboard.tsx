@@ -62,41 +62,44 @@ const CourseDashboard = ({ term }: { term: Term }) => {
           >
             Frequent Actions
           </Text>
-          <Flex gap={10} p={2} justify="center">
+          <Flex gap={8} p={2} justify="center">
             <Box
               bgColor="gray.200"
-              p={2}
+              py={2}
+              px={4}
               borderRadius={20}
-              paddingInline={10}
               {...textStyle}
             >
-              <Text>Assignment 1</Text>
-              <Text fontWeight="light" fontSize="sm">
-                CSC 110
+              <Text fontWeight="bold">Assignment 1</Text>
+              <Text>CSC 110</Text>
+              <Text as="i" fontWeight="light">
+                Accessed 8 times in the last 48h
               </Text>
             </Box>
             <Box
               bgColor="gray.200"
-              p={2}
+              py={2}
               borderRadius={20}
-              paddingInline={10}
+              px={4}
               {...textStyle}
             >
-              <Text>Discussion 3</Text>
-              <Text fontWeight="light" fontSize="sm">
-                BIO 150
+              <Text fontWeight="bold">Discussion 3</Text>
+              <Text>BIO 150</Text>
+              <Text as="i" fontWeight="light">
+                Accessed 9 times in the last week
               </Text>
             </Box>
             <Box
               bgColor="gray.200"
-              p={2}
+              py={2}
+              px={4}
               borderRadius={20}
-              paddingInline={10}
               {...textStyle}
             >
-              <Text>Partial Integration</Text>
-              <Text fontWeight="light" fontSize="sm">
-                MATH 150 Week 3
+              <Text fontWeight="bold">Partial Integration</Text>
+              <Text>MATH 150</Text>
+              <Text as="i" fontWeight="light">
+                Accessed 3 times in the last 24h
               </Text>
             </Box>
           </Flex>
