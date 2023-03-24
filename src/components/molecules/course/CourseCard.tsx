@@ -11,12 +11,7 @@ const CourseCard = ({ course }: { course: Course }) => {
     bgColor: course?.color,
     _dark: {
       bgColor: course?.darkColor,
-    },
-  };
-  const textStyle = {
-    _dark: {
-      bgColor: "gray.300",
-      color: "black",
+      borderColor: "gray.600",
     },
   };
 
@@ -24,9 +19,6 @@ const CourseCard = ({ course }: { course: Course }) => {
     <VStack
       border="1px"
       borderColor="gray.400"
-      _dark={{
-        borderColor: "gray.600",
-      }}
       minW="250px"
       maxW="400px"
       flexGrow={1}
