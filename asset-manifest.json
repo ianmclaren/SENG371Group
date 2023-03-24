@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/SENG371Group/static/js/main.8dcf8f99.js",
+    "main.js": "/SENG371Group/static/js/main.1d949fa0.js",
     "static/js/787.fcc37f75.chunk.js": "/SENG371Group/static/js/787.fcc37f75.chunk.js",
     "index.html": "/SENG371Group/index.html",
-    "main.8dcf8f99.js.map": "/SENG371Group/static/js/main.8dcf8f99.js.map",
+    "main.1d949fa0.js.map": "/SENG371Group/static/js/main.1d949fa0.js.map",
     "787.fcc37f75.chunk.js.map": "/SENG371Group/static/js/787.fcc37f75.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.8dcf8f99.js"
+    "static/js/main.1d949fa0.js"
   ]
 }
