@@ -1,4 +1,4 @@
-import { Course, Discussion, Assignment } from "./types";
+import { Course, Discussion, Assignment, Group } from "./types";
 
 export const sampleCourses: Course[] = [
   {
@@ -371,5 +371,39 @@ export const sampleAssignments: Assignment[] = [
         weight: 50,
         submitted: "No",
         graded: "No",
+    }
+];
+
+
+export const sampleGroups: Group[] = [
+    {
+        courseID: "1",
+        id: "1",
+        members: 0,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "2",
+        members: 0,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "3",
+        members: 3,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "4",
+        members: 4,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "5",
+        members: 0,
+        max_members: 4,
     }
 ];

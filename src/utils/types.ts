@@ -46,3 +46,10 @@ export type Assignment = {
     submitted: string;
     graded: string;
 };
+
+export type Group = {
+    courseID: string;
+    id: string;
+    members: number;
+    max_members: number;
+};
