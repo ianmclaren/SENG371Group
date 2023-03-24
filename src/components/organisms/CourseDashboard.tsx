@@ -1,5 +1,14 @@
-import { Box, Flex, Heading, HStack, Icon, Text } from "@chakra-ui/react";
-import { sampleCourses } from "../../utils/sampleData";
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { sampleCourses, sampleFrequentActions } from "../../utils/sampleData";
 import CourseCard from "../molecules/course/CourseCard";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
@@ -11,6 +20,13 @@ const CourseDashboard = ({ term }: { term: Term }) => {
   const filteredCourses = sampleCourses
     .filter((course) => course.term === term || term === "All")
     .filter((course) => !course.completed || displayCompleted);
+
+  const textStyle = {
+    _dark: {
+      bgColor: "gray.300",
+      color: "black",
+    },
+  };
 
   return (
     <Box p={4}>
@@ -29,6 +45,46 @@ const CourseDashboard = ({ term }: { term: Term }) => {
           </Text>
         </HStack>
       </HStack>
+      <Center>
+        <VStack
+          p={2}
+          margin={3}
+          border="solid"
+          borderRadius={10}
+          borderWidth={1}
+        >
+          <Text
+            textAlign="center"
+            fontWeight="medium"
+            fontSize="xl"
+            letterSpacing={3}
+            textTransform="uppercase"
+          >
+            Frequent Actions
+          </Text>
+          <Flex gap={8} p={2} justify="center">
+            {sampleFrequentActions.length > 0 ? (
+              sampleFrequentActions.map((frequentAction) => (
+                <Box
+                bgColor="gray.200"
+                py={2}
+                px={4}
+                borderRadius={20}
+                {...textStyle}
+                >
+                  <Text fontWeight="bold">{frequentAction.topic}</Text>
+                  <Text>{frequentAction.courseName}</Text>
+                  <Text as="i" fontWeight="light">
+                    Accessed {frequentAction.accessCount} times in the last {frequentAction.timeRange}
+                  </Text>
+                </Box>
+              ))
+            ):(
+              <Heading fontWeight="medium">No relevant frequent actions</Heading>
+            )}
+          </Flex>
+        </VStack>
+      </Center>
       <Flex
         gap={4}
         p={4}

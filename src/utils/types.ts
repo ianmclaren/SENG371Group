@@ -19,6 +19,7 @@ export type Course = {
   completed: boolean;
   notifications?: string[];
   color?: string;
+  darkColor?: string;
 };
 
 export type Discussion = {
@@ -35,4 +36,11 @@ export type Reply = {
   date: string;
   content: string;
   author: string;
+};
+
+export type FrequentAction = {
+  topic: string;
+  courseName: string;
+  accessCount: number;
+  timeRange: string;
 };

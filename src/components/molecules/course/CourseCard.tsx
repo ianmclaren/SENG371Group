@@ -6,6 +6,20 @@ import { useNavigate } from "react-router-dom";
 
 const CourseCard = ({ course }: { course: Course }) => {
   const navigate = useNavigate();
+
+  const courseCardStyle = {
+    bgColor: course?.color,
+    _dark: {
+      bgColor: course?.darkColor,
+    },
+  }
+  const textStyle = {
+    _dark: {
+      bgColor: "gray.300",
+      color: "black"
+    },
+  };
+
   return (
     <VStack
       border="1px"
@@ -21,7 +35,7 @@ const CourseCard = ({ course }: { course: Course }) => {
       cursor="pointer"
       align="start"
       pos="relative"
-      bgColor={course.color ?? "gray.100"}
+      {...courseCardStyle}
       onClick={() =>
         navigate({
           pathname: `/course/${course.id}`,
@@ -30,7 +44,7 @@ const CourseCard = ({ course }: { course: Course }) => {
     >
       {course.completed && <CompletedBadge />}
       <Spacer />
-      <Box bgColor="gray.200" w="100%" p={3}>
+      <Box bgColor="gray.200" w="100%" p={3} {...textStyle}>
         <HStack>
           <Heading fontWeight="medium">{course.name}</Heading>
           {course.notifications && (
