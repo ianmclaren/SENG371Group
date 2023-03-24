@@ -30,12 +30,6 @@ const CourseDashboard = ({
   const filteredSearch = filteredCourses.filter((course) =>
     course.name.toLowerCase().includes(searchPrompt.toLowerCase())
   );
-  const textStyle = {
-    _dark: {
-      bgColor: "gray.300",
-      color: "black",
-    },
-  };
 
   return (
     <Box p={4}>
@@ -76,10 +70,12 @@ const CourseDashboard = ({
               sampleFrequentActions.map((frequentAction) => (
                 <Box
                   bgColor="gray.200"
+                  _dark={{
+                    bgColor: "gray.600",
+                  }}
                   py={2}
                   px={4}
                   borderRadius={20}
-                  {...textStyle}
                 >
                   <Text fontWeight="bold">{frequentAction.topic}</Text>
                   <Text>{frequentAction.courseName}</Text>
