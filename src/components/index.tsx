@@ -13,10 +13,12 @@ import CourseDiscussions from "./pages/discussions/CourseDiscussions";
 import CourseGroups from "./pages/course/CourseGroups";
 import CourseGrades from "./pages/course/CourseGrades";
 import CreateDiscussion from "./pages/discussions/CreateDiscussion";
-import SingleDiscussion from "./pages/discussions/SingleDiscussion";
+import SingleDiscussion from "./pages/discussions/ViewDiscussion";
 
 const DimSpace = () => {
   const [term, setTerm] = useState<Term>("Spring 2023");
+
+  const [searchPrompt, setSearchPrompt] = useState<string>("");
 
   return (
     <Box
@@ -26,10 +28,18 @@ const DimSpace = () => {
       }}
       minH="100vh"
     >
-      <Header term={term} setTerm={setTerm} />
+      <Header
+        term={term}
+        setTerm={setTerm}
+        searchPrompt={searchPrompt}
+        setSearchPrompt={setSearchPrompt}
+      />
       <Box w="100%" h={0.5} bgColor="white" />
       <Routes>
-        <Route path="/" element={<CourseDashboard term={term} />} />
+        <Route
+          path="/"
+          element={<CourseDashboard term={term} searchPrompt={searchPrompt} />}
+        />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/course/:courseid">
           <Route index={true} path="" element={<CourseHome />} />

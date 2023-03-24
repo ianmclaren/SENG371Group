@@ -19,6 +19,28 @@ export type Course = {
   completed: boolean;
   notifications?: string[];
   color?: string;
+  content?: CourseContent[];
+  grades?: Grade[];
+  darkColor?: string;
+};
+
+export type CourseContent = {
+  week: number;
+  title: string;
+  content: string[];
+  completed: boolean;
+  resources?: Resource[];
+};
+
+export type Grade = {
+  name: string;
+  weight: number;
+  grade?: number;
+};
+
+export type Resource = {
+  title: string;
+  link: string;
 };
 
 export type Discussion = {
@@ -38,11 +60,18 @@ export type Reply = {
 };
 
 export type Assignment = {
-    courseID: string;
-    id: string;
-    name: string;
-    due_date: string;
-    weight: number;
-    submitted: string;
-    graded: string;
+  courseID: string;
+  id: string;
+  name: string;
+  due_date: string;
+  weight: number;
+  submitted: string;
+  graded: string;
+};
+
+export type FrequentAction = {
+  topic: string;
+  courseName: string;
+  accessCount: number;
+  timeRange: string;
 };

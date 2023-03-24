@@ -10,15 +10,22 @@ import {
 import { useParams } from "react-router-dom";
 import CourseHeader from "../../molecules/course/CourseHeader";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-const CreateDiscussion = () => {
+
+export default function CreateDiscussion () {
   let { courseid } = useParams();
   const navigate = useNavigate();
+  const [topic, setTopic] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted");
+    createNewDiscussion(courseid, topic);
     navigate(`/course/${courseid}/discussions`);
+  };
+
+  const handleTopicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTopic(e.target.value);
   };
 
   return (
@@ -35,6 +42,9 @@ const CreateDiscussion = () => {
               <Input
                 bg="white"
                 placeholder="Discussion Topic"
+                _dark={{color: "gray.700"}}
+                value={topic}
+                onChange={handleTopicChange}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     handleSubmit(e);
@@ -43,6 +53,7 @@ const CreateDiscussion = () => {
               />
               <Button
                 bg="gray.100"
+                _dark={{ color: "gray.700" }}
                 _hover={{ bgColor: "white" }}
                 onClick={handleSubmit}
               >
@@ -56,4 +67,33 @@ const CreateDiscussion = () => {
   );
 };
 
-export default CreateDiscussion;
+function getCurrentDate() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var dateString = year + "-" + month + "-" + day;
+  return dateString;
+}
+
+function createNewDiscussion(courseid: string = "1", topic: string) {
+  var discussions = JSON.parse(localStorage.getItem("discussions") || '');
+  
+  var newDiscussion = {
+    id: getID(),
+    courseID: courseid,
+    topic: topic,
+    date: getCurrentDate(),
+    numberReplies: 0,
+    author: "John Smith",
+    replies: [],
+  };
+  discussions.push(newDiscussion);
+  localStorage.setItem("discussions", JSON.stringify(discussions));
+}
+
+function getID() {
+  const date = new Date();
+  const id = `id-${date.getTime()}`;
+  return id;
+}
