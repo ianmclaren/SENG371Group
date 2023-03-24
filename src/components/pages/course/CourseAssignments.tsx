@@ -1,14 +1,6 @@
 import {
   Box,
-  Heading,
   VStack,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
   Flex,
 } from "@chakra-ui/react";
 

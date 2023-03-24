@@ -13,9 +13,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Assignment } from "../../../utils/types";
 
 const AssignmentTable = ({ assignments }: { assignments: Assignment[] }) => {
-    const navigate = useNavigate();
-    const { courseid } = useParams();
-
     return (
         <Box w="100%" p={4}>
             <Text fontSize="x-large">Assignments</Text>
