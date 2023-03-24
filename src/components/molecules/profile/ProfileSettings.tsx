@@ -17,9 +17,11 @@ import { Box,
 import React from "react";
 
 const ProfileSettings = () => {
-  const [sliderValue, setSliderValue] = React.useState(5)
-  const [showTooltip, setShowTooltip] = React.useState(false)
-  
+  var savedValue = localStorage.getItem("fontMultiplier")
+  var fontMultiplier = savedValue !== null ? JSON.parse(savedValue) : 100;
+  const [sliderValue, setSliderValue] = React.useState(fontMultiplier);
+  const [showTooltip, setShowTooltip] = React.useState(false);
+
   const buttonStyle = {
     bgColor: "gray.200",
     _hover: { shadow: "xl" },
@@ -29,49 +31,65 @@ const ProfileSettings = () => {
     },
   }
 
+  const transformFontSize= (size: string) => {
+    console.log(size);
+    switch(size){
+        case "3xl":
+            return (30*fontMultiplier/100).toString()+"px";
+        case "xl":
+            return (20*fontMultiplier/100).toString()+"px";
+        case "md":
+            return (16*fontMultiplier/100).toString()+"px";
+        case "sm":
+            return (14*fontMultiplier/100).toString()+"px";
+        default:
+            return "16px";
+    }
+  }
+
   return (
     <HStack gap={10}>
-    <Box p={3}>
-        <Button fontWeight="medium" fontSize="3xl"
-          _hover={{ bg: "transparent", color: "gray.600" }}
-          rightIcon={
+      <Box p={3}>
+        <HStack p={4}>
+            <Text fontWeight="medium" fontSize={transformFontSize("3xl")}
+                _hover={{ bg: "transparent", color: "gray.600" }}>
+                    User Preference
+            </Text>
             <Icon
-              fontSize="xl"
-              as={ViewIcon}
-              aria-label="Profile Settings"
-              _hover={{ bg: "transparent", color: "gray.600" }}
+                fontSize={transformFontSize("xl")}
+                as={ViewIcon}
+                aria-label="Profile Settings"
+                _hover={{ bg: "transparent", color: "gray.600" }}
             />
-          }>
-            User Preference
-        </Button>
+        </HStack>
         <HStack p={4} gap={5}>
-            <Text fontSize="xl">Set font size</Text>
+            <Text fontSize={transformFontSize("xl")}>Set font size</Text>
             <Slider
                 id='slider'
-                width="58%"
-                defaultValue={50}
-                min={0}
-                max={100}
+                width="55%"
+                defaultValue={fontMultiplier}
+                min={50}
+                max={150}
                 colorScheme='gray'
                 onChange={(v) => setSliderValue(v)}
                 onMouseEnter={() => setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
             >
-                <SliderMark value={25} mt='1' ml='-2.5' fontSize='sm'>
-                    25%
-                </SliderMark>
-                <SliderMark value={50} mt='1' ml='-2.5' fontSize='sm'>
-                    50%
-                </SliderMark>
-                <SliderMark value={75} mt='1' ml='-2.5' fontSize='sm'>
+                <SliderMark value={75} mt='1' ml='-2.5' fontSize={transformFontSize("sm")}>
                     75%
+                </SliderMark>
+                <SliderMark value={100} mt='1' ml='-2.5' fontSize={transformFontSize("sm")}>
+                    100%
+                </SliderMark>
+                <SliderMark value={125} mt='1' ml='-2.5' fontSize={transformFontSize("sm")}>
+                    125%
                 </SliderMark>
                 <SliderTrack>
                     <SliderFilledTrack />
                 </SliderTrack>
                 <Tooltip
                     hasArrow
-                    bg='teal.500'
+                    bg='gray.500'
                     color='white'
                     placement='top'
                     isOpen={showTooltip}
@@ -80,15 +98,21 @@ const ProfileSettings = () => {
                     <SliderThumb />
                 </Tooltip>
             </Slider>
-            <Button {...buttonStyle} borderRadius={20} paddingInline={5}
+            <Button {...buttonStyle} 
+              borderRadius={20} 
+              paddingInline={5}
               cursor="pointer"
-              transition="all 0.1s ease-in-out">
-                <Text fontWeight="medium">Save</Text>
+              transition="all 0.1s ease-in-out"
+              fontSize={transformFontSize("md")}
+              fontWeight="medium"
+              onClick={() => localStorage.setItem("fontMultiplier", JSON.stringify(sliderValue))}
+            >
+                Save
             </Button>
         </HStack>
         <Spacer height={5}/>
         <HStack p={4} gap={5}>
-            <Text fontSize="xl">Set color palette</Text>
+            <Text fontSize={transformFontSize("xl")}>Set color palette</Text>
             <RadioGroup defaultValue='2'>
                 <Stack spacing={5} direction='row'>
                     <Radio colorScheme='yellow' value='1'>
@@ -107,26 +131,28 @@ const ProfileSettings = () => {
             </RadioGroup>
             <Button {...buttonStyle} borderRadius={20} paddingInline={5}
               cursor="pointer"
+              fontSize={transformFontSize("md")}
+              fontWeight="medium"
               transition="all 0.1s ease-in-out">
-                <Text fontWeight="medium">Save</Text>
+                Save
             </Button>
         </HStack>
     </Box>
     <Box p={3}>
-        <Button fontWeight="medium" fontSize="3xl"
-          _hover={{ bg: "transparent", color: "gray.600" }}
-          rightIcon={
+        <HStack p={4}>
+            <Text fontWeight="medium" fontSize={transformFontSize("3xl")}
+                _hover={{ bg: "transparent", color: "gray.600" }}>
+                    Account Settings
+            </Text>
             <Icon
-              fontSize="xl"
-              as={SettingsIcon}
-              aria-label="Profile Settings"
-              _hover={{ bg: "transparent", color: "gray.600" }}
+                fontSize={transformFontSize("xl")}
+                as={SettingsIcon}
+                aria-label="Profile Settings"
+                _hover={{ bg: "transparent", color: "gray.600" }}
             />
-          }>
-            Account Settings
-        </Button>
+        </HStack>
         <HStack p={4} gap={5}>
-            <Text fontSize="xl">Get notifications in email</Text>
+            <Text fontSize={transformFontSize("xl")}>Get notifications in email</Text>
             <RadioGroup defaultValue='1'>
                 <Stack spacing={5} direction='row'>
                     <Radio colorScheme='gray' value='1'>
@@ -139,13 +165,15 @@ const ProfileSettings = () => {
             </RadioGroup>
             <Button {...buttonStyle} borderRadius={20} paddingInline={5}
               cursor="pointer"
+              fontSize={transformFontSize("md")}
+              fontWeight="medium"
               transition="all 0.1s ease-in-out">
-                <Text fontWeight="medium">Save</Text>
+                Save
             </Button>
         </HStack>
         <Spacer height={5}/>
         <HStack p={4} gap={5}>
-            <Text fontSize="xl">Allow messages from peers</Text>
+            <Text fontSize={transformFontSize("xl")}>Allow messages from peers</Text>
             <RadioGroup defaultValue='1'>
                 <Stack spacing={5} direction='row'>
                     <Radio colorScheme='gray' value='1'>
@@ -158,11 +186,13 @@ const ProfileSettings = () => {
             </RadioGroup>
             <Button {...buttonStyle} borderRadius={20} paddingInline={5}
               cursor="pointer"
+              fontSize={transformFontSize("md")}
+              fontWeight="medium"
               transition="all 0.1s ease-in-out">
-                <Text fontWeight="medium">Save</Text>
+                Save
             </Button>
         </HStack>
-    </Box>
+      </Box>
     </HStack>
   );
 };

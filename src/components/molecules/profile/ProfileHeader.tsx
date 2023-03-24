@@ -1,5 +1,6 @@
 import { Box, Text, VStack, HStack, Button, Icon } from "@chakra-ui/react";
 import { DeleteIcon} from "@chakra-ui/icons";
+import { transformFontSize } from "../../../utils/Helper";
 
 const ProfileHeader = () => {
   const buttonStyle = {
@@ -20,12 +21,14 @@ const ProfileHeader = () => {
           <HStack width="100%">
             <Button {...buttonStyle} borderRadius={20} paddingInline={5}
               cursor="pointer"
+              fontSize={transformFontSize("md")}
+              fontWeight="medium"
               transition="all 0.1s ease-in-out">
-                <Text fontWeight="medium">Change Picture</Text>
+                Change Picture
               </Button>
             <Icon
               as={DeleteIcon}
-              fontSize="xl"
+              fontSize={transformFontSize("xl")}
               _hover={{ color: "gray.500" }}
             />
           </HStack>
@@ -33,23 +36,25 @@ const ProfileHeader = () => {
       </Box>
       <HStack w="100%" p={3} gap={100}>
         <Box width="45%">
-          <Text fontWeight="medium" fontSize="xl" letterSpacing={3} textTransform="uppercase">John Smith</Text>
-          <Text fontWeight="light" fontSize="sm">V00123456</Text>
+          <Text fontWeight="medium" fontSize={transformFontSize("xl")} letterSpacing={3} textTransform="uppercase">John Smith</Text>
+          <Text fontWeight="light" fontSize={transformFontSize("sm")}>V00123456</Text>
         </Box>
         <Box>
-            <Text fontWeight="medium" fontSize="xl" letterSpacing={3} textTransform="uppercase">BIO</Text>
-            <Text fontWeight="light" fontSize="sm">
+            <Text fontWeight="medium" fontSize={transformFontSize("xl")} letterSpacing={3} textTransform="uppercase">BIO</Text>
+            <Text fontWeight="light" fontSize={transformFontSize("sm")}>
                 Lorem ipsum dolor sit amet. Sed iusto molestiae est blanditiis dolore aut voluptatem beatae nam iure reprehenderit ut obcaecati rerum aut exercitationem consectetur. Id necessitatibus debitis hic explicabo reprehenderit nam praesentium.
             </Text>
             <HStack width="100%">
                 <Button {...buttonStyle} borderRadius={20} paddingInline={5}
                     cursor="pointer"
+                    fontSize={transformFontSize("md")}
+                    fontWeight="medium"
                     transition="all 0.1s ease-in-out">
-                    <Text fontWeight="medium">Edit Bio</Text>
+                      Edit Bio
                 </Button>
             <Icon
               as={DeleteIcon}
-              fontSize="xl"
+              fontSize={transformFontSize("xl")}
               _hover={{ color: "gray.500" }}
             />
           </HStack>
