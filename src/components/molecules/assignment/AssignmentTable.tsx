@@ -16,10 +16,6 @@ const AssignmentTable = ({ assignments }: { assignments: Assignment[] }) => {
     const navigate = useNavigate();
     const { courseid } = useParams();
 
-    const handleAssignmentClick = (courseID: string, assignmentID: string) => {
-        navigate(`/course/${courseid}/assignment/${assignmentID}`);
-    };
-
     return (
         <Box w="100%" p={4}>
             <Text fontSize="x-large">Assignments</Text>
