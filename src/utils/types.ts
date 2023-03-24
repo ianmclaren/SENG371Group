@@ -59,6 +59,16 @@ export type Reply = {
   author: string;
 };
 
+export type Assignment = {
+  courseID: string;
+  id: string;
+  name: string;
+  due_date: string;
+  weight: number;
+  submitted: string;
+  graded: string;
+};
+
 export type FrequentAction = {
   topic: string;
   courseName: string;

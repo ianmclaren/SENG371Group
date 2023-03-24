@@ -1,4 +1,4 @@
-import { Course, Discussion, FrequentAction } from "./types";
+import { Course, Discussion, FrequentAction, Assignment } from "./types";
 
 export const sampleCourses: Course[] = [
   {
@@ -606,6 +606,81 @@ export const sampleDiscussions: Discussion[] = [
       },
     ],
     author: "Andrea Wilson",
+  },
+];
+
+export const sampleAssignments: Assignment[] = [
+  {
+    courseID: "1",
+    id: "1",
+    name: "Assignment 1",
+    due_date: "2023-01-31",
+    weight: 10,
+    submitted: "Yes",
+    graded: "Yes",
+  },
+  {
+    courseID: "1",
+    id: "2",
+    name: "Assignment 2",
+    due_date: "2023-02-28",
+    weight: 10,
+    submitted: "Yes",
+    graded: "No",
+  },
+  {
+    courseID: "1",
+    id: "3",
+    name: "Assignment 3",
+    due_date: "2023-03-24",
+    weight: 10,
+    submitted: "No",
+    graded: "No",
+  },
+  {
+    courseID: "2",
+    id: "1",
+    name: "Presentation",
+    due_date: "2023-02-12",
+    weight: 35,
+    submitted: "Yes",
+    graded: "No",
+  },
+  {
+    courseID: "2",
+    id: "2",
+    name: "Assignment 1",
+    due_date: "2023-03-01",
+    weight: 10,
+    submitted: "Yes",
+    graded: "Yes",
+  },
+  {
+    courseID: "2",
+    id: "4",
+    name: "Project",
+    due_date: "2023-04-01",
+    weight: 40,
+    submitted: "No",
+    graded: "No",
+  },
+  {
+    courseID: "3",
+    id: "1",
+    name: "Project",
+    due_date: "2023-04-09",
+    weight: 80,
+    submitted: "No",
+    graded: "No",
+  },
+  {
+    courseID: "4",
+    id: "1",
+    name: "Design Project",
+    due_date: "2023-04-03",
+    weight: 50,
+    submitted: "No",
+    graded: "No",
   },
 ];
 
