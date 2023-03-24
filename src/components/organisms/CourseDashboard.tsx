@@ -14,13 +14,22 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { Term } from "../../utils/types";
 
-const CourseDashboard = ({ term }: { term: Term }) => {
+const CourseDashboard = ({
+  term,
+  searchPrompt,
+}: {
+  term: Term;
+  searchPrompt: string;
+}) => {
   const [displayCompleted, setDisplayCompleted] = useState(true);
 
   const filteredCourses = sampleCourses
     .filter((course) => course.term === term || term === "All")
     .filter((course) => !course.completed || displayCompleted);
 
+  const filteredSearch = filteredCourses.filter((course) =>
+    course.name.toLowerCase().includes(searchPrompt.toLowerCase())
+  );
   const textStyle = {
     _dark: {
       bgColor: "gray.300",
@@ -66,21 +75,24 @@ const CourseDashboard = ({ term }: { term: Term }) => {
             {sampleFrequentActions.length > 0 ? (
               sampleFrequentActions.map((frequentAction) => (
                 <Box
-                bgColor="gray.200"
-                py={2}
-                px={4}
-                borderRadius={20}
-                {...textStyle}
+                  bgColor="gray.200"
+                  py={2}
+                  px={4}
+                  borderRadius={20}
+                  {...textStyle}
                 >
                   <Text fontWeight="bold">{frequentAction.topic}</Text>
                   <Text>{frequentAction.courseName}</Text>
                   <Text as="i" fontWeight="light">
-                    Accessed {frequentAction.accessCount} times in the last {frequentAction.timeRange}
+                    Accessed {frequentAction.accessCount} times in the last{" "}
+                    {frequentAction.timeRange}
                   </Text>
                 </Box>
               ))
-            ):(
-              <Heading fontWeight="medium">No relevant frequent actions</Heading>
+            ) : (
+              <Heading fontWeight="medium">
+                No relevant frequent actions
+              </Heading>
             )}
           </Flex>
         </VStack>
@@ -94,7 +106,15 @@ const CourseDashboard = ({ term }: { term: Term }) => {
         mx="auto"
         maxW={["100%", "90%", "70%"]}
       >
-        {filteredCourses.length > 0 ? (
+        {searchPrompt ? (
+          filteredSearch.length > 0 ? (
+            filteredSearch.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))
+          ) : (
+            <Heading fontWeight="medium">Uh oh... no courses found</Heading>
+          )
+        ) : filteredCourses.length > 0 ? (
           filteredCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))

@@ -19,7 +19,28 @@ export type Course = {
   completed: boolean;
   notifications?: string[];
   color?: string;
+  content?: CourseContent[];
+  grades?: Grade[];
   darkColor?: string;
+};
+
+export type CourseContent = {
+  week: number;
+  title: string;
+  content: string[];
+  completed: boolean;
+  resources?: Resource[];
+};
+
+export type Grade = {
+  name: string;
+  weight: number;
+  grade?: number;
+};
+
+export type Resource = {
+  title: string;
+  link: string;
 };
 
 export type Discussion = {

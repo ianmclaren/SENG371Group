@@ -11,12 +11,7 @@ const CourseCard = ({ course }: { course: Course }) => {
     bgColor: course?.color,
     _dark: {
       bgColor: course?.darkColor,
-    },
-  }
-  const textStyle = {
-    _dark: {
-      bgColor: "gray.300",
-      color: "black"
+      borderColor: "gray.600",
     },
   };
 
@@ -44,7 +39,14 @@ const CourseCard = ({ course }: { course: Course }) => {
     >
       {course.completed && <CompletedBadge />}
       <Spacer />
-      <Box bgColor="gray.200" w="100%" p={3} {...textStyle}>
+      <Box
+        bgColor="gray.200"
+        _dark={{
+          bgColor: "gray.600",
+        }}
+        w="100%"
+        p={3}
+      >
         <HStack>
           <Heading fontWeight="medium">{course.name}</Heading>
           {course.notifications && (
