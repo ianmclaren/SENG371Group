@@ -20,7 +20,7 @@ const CourseGradesTable = ({ courseid }: { courseid: string }) => {
         Grades for {course?.name} - {course?.description}
       </Heading>
       <TableContainer>
-        <Table variant="simple">
+        <Table size="lg">
           <Thead>
             <Tr>
               <Th>Name</Th>
@@ -35,6 +35,12 @@ const CourseGradesTable = ({ courseid }: { courseid: string }) => {
                 bgColor="gray.300"
                 _hover={{
                   bgColor: "gray.200",
+                }}
+                _dark={{
+                  bgColor: "gray.700",
+                  _hover: {
+                    bgColor: "gray.600",
+                  },
                 }}
               >
                 <Td>{grade.name}</Td>
