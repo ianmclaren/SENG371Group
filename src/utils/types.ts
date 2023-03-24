@@ -21,6 +21,7 @@ export type Course = {
   color?: string;
   content?: CourseContent[];
   grades?: Grade[];
+  darkColor?: string;
 };
 
 export type CourseContent = {
@@ -56,4 +57,11 @@ export type Reply = {
   date: string;
   content: string;
   author: string;
+};
+
+export type FrequentAction = {
+  topic: string;
+  courseName: string;
+  accessCount: number;
+  timeRange: string;
 };

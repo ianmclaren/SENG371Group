@@ -4,12 +4,19 @@ import CourseHeader from "../../molecules/course/CourseHeader";
 import DiscussionTable from "../../molecules/discussion/DiscussionTable";
 import DiscussionsHeader from "../../molecules/discussion/DiscussionHeader";
 import { sampleDiscussions } from "../../../utils/sampleData";
+import { Discussion } from "../../../utils/types";
 
 const CourseDiscussions = () => {
   let { courseid } = useParams();
-  const discussions = sampleDiscussions.filter(
-    (discussion) => discussion.courseID === courseid
-  );
+  var discussions = sampleDiscussions.filter((discussion) => discussion.courseID === courseid);
+
+  if (localStorage.getItem("discussions") === null) {
+    localStorage.setItem("discussions", JSON.stringify(sampleDiscussions))
+  }
+  else {
+    discussions = JSON.parse(localStorage.getItem("discussions") || '').filter(
+      (discussion: Discussion) => discussion.courseID === courseid)
+  }
 
   return (
     <Box>

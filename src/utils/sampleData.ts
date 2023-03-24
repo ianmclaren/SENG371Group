@@ -1,4 +1,4 @@
-import { Course, Discussion } from "./types";
+import { Course, Discussion, FrequentAction } from "./types";
 
 export const sampleCourses: Course[] = [
   {
@@ -279,6 +279,7 @@ export const sampleCourses: Course[] = [
         weight: 25,
       },
     ],
+    darkColor: "red.700",
   },
   {
     id: "2",
@@ -309,6 +310,7 @@ export const sampleCourses: Course[] = [
         completed: true,
       },
     ],
+    darkColor: "blue.700",
   },
   {
     id: "3",
@@ -320,6 +322,7 @@ export const sampleCourses: Course[] = [
     professor: "Mark Smith",
     completed: false,
     color: "green.400",
+    darkColor: "green.700",
   },
   {
     id: "4",
@@ -335,6 +338,7 @@ export const sampleCourses: Course[] = [
       "Groups are being formed for the final project in the next lab",
     ],
     color: "yellow.400",
+    darkColor: "yellow.700",
   },
   {
     id: "5",
@@ -346,6 +350,7 @@ export const sampleCourses: Course[] = [
     professor: "John Doe",
     completed: true,
     color: "purple.400",
+    darkColor: "purple.700",
   },
   {
     id: "6",
@@ -357,6 +362,7 @@ export const sampleCourses: Course[] = [
     professor: "Jane Doe",
     completed: true,
     color: "pink.400",
+    darkColor: "pink.700",
   },
   {
     id: "7",
@@ -368,6 +374,7 @@ export const sampleCourses: Course[] = [
     professor: "Mark Smith",
     completed: true,
     color: "orange.400",
+    darkColor: "orange.700",
   },
 ];
 
@@ -599,5 +606,26 @@ export const sampleDiscussions: Discussion[] = [
       },
     ],
     author: "Andrea Wilson",
+  },
+];
+
+export const sampleFrequentActions: FrequentAction[] = [
+  {
+    topic: "Assignment 1",
+    courseName: "CSC 110",
+    accessCount: 8,
+    timeRange: "48h",
+  },
+  {
+    topic: "Discussion 3",
+    courseName: "BIO 150",
+    accessCount: 5,
+    timeRange: "24h",
+  },
+  {
+    topic: "Partial Integration",
+    courseName: "MATH 150",
+    accessCount: 3,
+    timeRange: "24h",
   },
 ];
