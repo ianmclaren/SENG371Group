@@ -8,6 +8,7 @@ const CreateDiscussionButton = () => {
     <Button
       aria-label="New Discussion"
       _hover={{ bg: "transparent", color: "gray.600" }}
+      _dark={{color: "black"}}
       border="1px"
       backgroundColor={"gray.100"}
       onClick={() => navigate("create")}
