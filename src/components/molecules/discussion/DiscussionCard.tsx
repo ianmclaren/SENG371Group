@@ -5,11 +5,11 @@ const DiscussionCard = ({ discussion }: { discussion: Discussion }) => {
   return (
     <Box w="100%" borderRadius="md" p="4" bgColor="gray.200">
       <VStack w="100%">
-          <Text w="100%" fontWeight="medium" fontSize="large">
+          <Text w="100%" fontWeight="medium" fontSize="large" _dark={{color: "gray.700"}}>
             {discussion.topic}
           </Text>
         <HStack w="100%">
-          <Text fontWeight="sm" fontSize="medium" color="gray.500">
+          <Text fontWeight="sm" fontSize="medium" color="gray.500" _dark={{color: "gray.700"}}>
             {discussion.author} - {discussion.date}
           </Text>
         </HStack>

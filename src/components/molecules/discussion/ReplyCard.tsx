@@ -6,12 +6,12 @@ const ReplyCard = ({reply}: {reply: Reply}) => {
         <Box w="100%" borderRadius="md" p="4" ml="auto" bgColor="gray.200">
             <VStack w="100%">
                 <HStack w="100%">
-                <Text fontWeight="medium" fontSize="large">
+                <Text fontWeight="medium" fontSize="large" _dark={{color: "gray.700"}}>
                     {reply.content}
                 </Text>
                 </HStack>
                 <HStack w="100%">
-                <Text fontWeight="sm" fontSize="medium" color="gray.500">
+                <Text fontWeight="sm" fontSize="medium" color="gray.500" _dark={{color: "gray.700"}}>
                     {reply.author} replied on {reply.date}
                 </Text>
                 </HStack>

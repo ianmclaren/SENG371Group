@@ -56,8 +56,11 @@ const DiscussionTable = ({ discussions }: { discussions: Discussion[] }) => {
               </Tr>
             ))
           ) : (
-            <Heading fontWeight="medium" fontSize="medium">
-              There are no active discussion topics
+            <Heading 
+              _dark={{color: "gray.700"}} 
+              fontWeight="medium" 
+              fontSize="medium">
+                There are no active discussion topics
             </Heading>
           )}
         </Tbody>
