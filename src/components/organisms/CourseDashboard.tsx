@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { sampleCourses } from "../../utils/sampleData";
+import { sampleCourses, sampleFrequentActions } from "../../utils/sampleData";
 import CourseCard from "../molecules/course/CourseCard";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
@@ -63,45 +63,25 @@ const CourseDashboard = ({ term }: { term: Term }) => {
             Frequent Actions
           </Text>
           <Flex gap={8} p={2} justify="center">
-            <Box
-              bgColor="gray.200"
-              py={2}
-              px={4}
-              borderRadius={20}
-              {...textStyle}
-            >
-              <Text fontWeight="bold">Assignment 1</Text>
-              <Text>CSC 110</Text>
-              <Text as="i" fontWeight="light">
-                Accessed 8 times in the last 48h
-              </Text>
-            </Box>
-            <Box
-              bgColor="gray.200"
-              py={2}
-              borderRadius={20}
-              px={4}
-              {...textStyle}
-            >
-              <Text fontWeight="bold">Discussion 3</Text>
-              <Text>BIO 150</Text>
-              <Text as="i" fontWeight="light">
-                Accessed 9 times in the last week
-              </Text>
-            </Box>
-            <Box
-              bgColor="gray.200"
-              py={2}
-              px={4}
-              borderRadius={20}
-              {...textStyle}
-            >
-              <Text fontWeight="bold">Partial Integration</Text>
-              <Text>MATH 150</Text>
-              <Text as="i" fontWeight="light">
-                Accessed 3 times in the last 24h
-              </Text>
-            </Box>
+            {sampleFrequentActions.length > 0 ? (
+              sampleFrequentActions.map((frequentAction) => (
+                <Box
+                bgColor="gray.200"
+                py={2}
+                px={4}
+                borderRadius={20}
+                {...textStyle}
+                >
+                  <Text fontWeight="bold">{frequentAction.topic}</Text>
+                  <Text>{frequentAction.courseName}</Text>
+                  <Text as="i" fontWeight="light">
+                    Accessed {frequentAction.accessCount} times in the last {frequentAction.timeRange}
+                  </Text>
+                </Box>
+              ))
+            ):(
+              <Heading fontWeight="medium">No relevant frequent actions</Heading>
+            )}
           </Flex>
         </VStack>
       </Center>

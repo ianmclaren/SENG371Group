@@ -37,3 +37,10 @@ export type Reply = {
   content: string;
   author: string;
 };
+
+export type FrequentAction = {
+  topic: string;
+  courseName: string;
+  accessCount: number;
+  timeRange: string;
+};

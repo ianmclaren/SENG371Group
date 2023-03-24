@@ -1,4 +1,4 @@
-import { Course, Discussion } from "./types";
+import { Course, Discussion, FrequentAction } from "./types";
 
 export const sampleCourses: Course[] = [
   {
@@ -305,3 +305,23 @@ export const sampleDiscussions: Discussion[] = [
   }
 ];
 
+export const sampleFrequentActions: FrequentAction[] = [
+  {
+    topic: "Assignment 1",
+    courseName: "CSC 110",
+    accessCount: 8,
+    timeRange: "48h",
+  },
+  {
+    topic: "Discussion 3",
+    courseName: "BIO 150",
+    accessCount: 5,
+    timeRange: "24h",
+  },
+  {
+    topic: "Partial Integration",
+    courseName: "MATH 150",
+    accessCount: 3,
+    timeRange: "24h",
+  },
+];
