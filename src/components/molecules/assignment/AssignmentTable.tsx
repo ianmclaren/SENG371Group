@@ -9,7 +9,6 @@ import {
     Td,
     Text,
 } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
 import { Assignment } from "../../../utils/types";
 
 const AssignmentTable = ({ assignments }: { assignments: Assignment[] }) => {
