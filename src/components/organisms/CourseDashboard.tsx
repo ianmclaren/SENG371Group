@@ -1,4 +1,13 @@
-import { Box, Flex, Heading, HStack, Icon, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { sampleCourses } from "../../utils/sampleData";
 import CourseCard from "../molecules/course/CourseCard";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
@@ -15,7 +24,7 @@ const CourseDashboard = ({ term }: { term: Term }) => {
   const textStyle = {
     _dark: {
       bgColor: "gray.300",
-      color: "black"
+      color: "black",
     },
   };
 
@@ -36,23 +45,63 @@ const CourseDashboard = ({ term }: { term: Term }) => {
           </Text>
         </HStack>
       </HStack>
-      <Box p={2} margin={3} border="solid" borderRadius={10} borderWidth={1}>
-        <Text textAlign="center" fontWeight="medium" fontSize="xl" letterSpacing={3} textTransform="uppercase">Frequent Actions</Text>
-        <Flex gap={10} p={2} justify="center">
-          <Box bgColor="gray.200" p={2} borderRadius={20} paddingInline={10} {...textStyle}>
-            <Text>Assignment 1</Text>
-            <Text fontWeight="light" fontSize="sm">CSC 110</Text>
-          </Box>
-          <Box bgColor="gray.200" p={2} borderRadius={20} paddingInline={10} {...textStyle}>
-            <Text>Discussion 3</Text>
-            <Text fontWeight="light" fontSize="sm">BIO 150</Text>
-          </Box>
-          <Box bgColor="gray.200" p={2} borderRadius={20} paddingInline={10} {...textStyle}>
-            <Text>Partial Integration</Text>
-            <Text fontWeight="light" fontSize="sm">MATH 150 Week 3</Text>
-          </Box>
-        </Flex>
-      </Box>
+      <Center>
+        <VStack
+          p={2}
+          margin={3}
+          border="solid"
+          borderRadius={10}
+          borderWidth={1}
+        >
+          <Text
+            textAlign="center"
+            fontWeight="medium"
+            fontSize="xl"
+            letterSpacing={3}
+            textTransform="uppercase"
+          >
+            Frequent Actions
+          </Text>
+          <Flex gap={10} p={2} justify="center">
+            <Box
+              bgColor="gray.200"
+              p={2}
+              borderRadius={20}
+              paddingInline={10}
+              {...textStyle}
+            >
+              <Text>Assignment 1</Text>
+              <Text fontWeight="light" fontSize="sm">
+                CSC 110
+              </Text>
+            </Box>
+            <Box
+              bgColor="gray.200"
+              p={2}
+              borderRadius={20}
+              paddingInline={10}
+              {...textStyle}
+            >
+              <Text>Discussion 3</Text>
+              <Text fontWeight="light" fontSize="sm">
+                BIO 150
+              </Text>
+            </Box>
+            <Box
+              bgColor="gray.200"
+              p={2}
+              borderRadius={20}
+              paddingInline={10}
+              {...textStyle}
+            >
+              <Text>Partial Integration</Text>
+              <Text fontWeight="light" fontSize="sm">
+                MATH 150 Week 3
+              </Text>
+            </Box>
+          </Flex>
+        </VStack>
+      </Center>
       <Flex
         gap={4}
         p={4}
