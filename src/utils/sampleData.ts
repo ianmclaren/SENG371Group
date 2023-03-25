@@ -729,5 +729,89 @@ export const sampleQuizzes: Quiz[] = [
     graded: "Yes",
     synchronous: "No",
     percentage: 78
+  },
+  {
+    courseID: "1",
+    id: "3",
+    quizName: "Quiz 3",
+    due_date: "Nov. 12",
+    weight: 10,
+    questionCount: 20,
+    submitted: "No",
+    graded: "No",
+    synchronous: "Yes",
+    percentage: 0
+  },
+  {
+    courseID: "2",
+    id: "1",
+    quizName: "Quiz 1",
+    due_date: "Sep. 30",
+    weight: 10,
+    questionCount: 30,
+    submitted: "Yes",
+    graded: "Yes",
+    synchronous: "Yes",
+    percentage: 88
+  },
+  {
+    courseID: "2",
+    id: "2",
+    quizName: "Quiz 2",
+    due_date: "Oct. 22",
+    weight: 10,
+    questionCount: 15,
+    submitted: "Yes",
+    graded: "Yes",
+    synchronous: "No",
+    percentage: 72
+  },
+  {
+    courseID: "2",
+    id: "3",
+    quizName: "Final Quiz",
+    due_date: "Dec. 12",
+    weight: 10,
+    questionCount: 20,
+    submitted: "No",
+    graded: "No",
+    synchronous: "Yes",
+    percentage: 0
+  },
+  {
+    courseID: "3",
+    id: "1",
+    quizName: "Quiz 1",
+    due_date: "Sep. 30",
+    weight: 10,
+    questionCount: 30,
+    submitted: "Yes",
+    graded: "Yes",
+    synchronous: "Yes",
+    percentage: 93
+  },
+  {
+    courseID: "3",
+    id: "2",
+    quizName: "Quiz 2",
+    due_date: "Oct. 22",
+    weight: 10,
+    questionCount: 15,
+    submitted: "Yes",
+    graded: "Yes",
+    synchronous: "No",
+    percentage: 78
+  },
+  {
+    courseID: "3",
+    id: "3",
+    quizName: "Quiz 3",
+    due_date: "Nov. 30",
+    weight: 10,
+    questionCount: 20,
+    submitted: "Yes",
+    graded: "No",
+    synchronous: "Yes",
+    percentage: 0
   }
 ]
