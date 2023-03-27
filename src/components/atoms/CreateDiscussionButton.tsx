@@ -9,10 +9,17 @@ const CreateDiscussionButton = () => {
     <Button
       aria-label="New Discussion"
       rightIcon={<PlusSquareIcon />}
-      _hover={{ bg: "transparent", color: "gray.600" }}
-      _dark={{color: "black"}}
+      _hover={{
+        backgroundColor: "gray.300",
+        _dark: {
+          backgroundColor: "gray.800",
+        },
+      }}
       border="1px"
       backgroundColor={"gray.100"}
+      _dark={{
+        backgroundColor: "gray.600",
+      }}
       onClick={() => navigate("create")}
     >
       New Discussion

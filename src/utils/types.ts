@@ -74,6 +74,7 @@ export type FrequentAction = {
   courseName: string;
   accessCount: number;
   timeRange: string;
+  linkTo: string;
 };
 
 export type Quiz = {

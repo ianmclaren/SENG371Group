@@ -4,6 +4,7 @@ import {
   Button,
   HStack,
   Icon,
+  Input,
   Radio,
   RadioGroup,
   Slider,
@@ -14,15 +15,20 @@ import {
   Spacer,
   Stack,
   Text,
-  Tooltip,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProfileSettings = () => {
-  var savedValue = localStorage.getItem("fontMultiplier");
-  var fontMultiplier = savedValue !== null ? JSON.parse(savedValue) : 100;
-  const [sliderValue, setSliderValue] = React.useState(fontMultiplier);
-  const [showTooltip, setShowTooltip] = React.useState(false);
+  const [textMultiplier, setTextMultiplier] = React.useState(50);
+  const [sliderValue, setSliderValue] = React.useState(50);
+  const [email, setEmail] = React.useState("johnsmith@gmail.com");
+
+  useEffect(() => {
+    const savedValue = localStorage.getItem("fontMultiplier");
+    if (savedValue !== null) {
+      setTextMultiplier(JSON.parse(savedValue));
+    }
+  }, []);
 
   const buttonStyle = {
     bgColor: "gray.200",
@@ -37,17 +43,53 @@ const ProfileSettings = () => {
     console.log(size);
     switch (size) {
       case "3xl":
-        return ((30 * fontMultiplier) / 100).toString() + "px";
+        return textMultiplier === 0
+          ? "xl"
+          : textMultiplier === 25
+          ? "2xl"
+          : textMultiplier === 50
+          ? "3xl"
+          : textMultiplier === 75
+          ? "4xl"
+          : "5xl";
       case "xl":
-        return ((20 * fontMultiplier) / 100).toString() + "px";
+        return textMultiplier === 0
+          ? "md"
+          : textMultiplier === 25
+          ? "lg"
+          : textMultiplier === 50
+          ? "xl"
+          : textMultiplier === 75
+          ? "2xl"
+          : "3xl";
       case "md":
-        return ((16 * fontMultiplier) / 100).toString() + "px";
+        return textMultiplier === 0
+          ? "xs"
+          : textMultiplier === 25
+          ? "sm"
+          : textMultiplier === 50
+          ? "md"
+          : textMultiplier === 75
+          ? "lg"
+          : "xl";
       case "sm":
-        return ((14 * fontMultiplier) / 100).toString() + "px";
+        return textMultiplier === 0
+          ? "2xs"
+          : textMultiplier === 25
+          ? "xs"
+          : textMultiplier === 50
+          ? "sm"
+          : textMultiplier === 75
+          ? "md"
+          : "lg";
       default:
-        return "16px";
+        return size;
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("fontMultiplier", JSON.stringify(textMultiplier));
+  }, [textMultiplier]);
 
   return (
     <HStack gap={10}>
@@ -68,21 +110,28 @@ const ProfileSettings = () => {
           <Slider
             id="slider"
             width="55%"
-            defaultValue={fontMultiplier}
-            min={50}
-            max={150}
+            value={sliderValue}
+            min={0}
+            step={25}
+            max={100}
             colorScheme="gray"
             onChange={(v) => setSliderValue(v)}
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
           >
             <SliderMark
-              value={75}
+              value={0}
               mt="1"
               ml="-2.5"
               fontSize={transformFontSize("sm")}
             >
-              75%
+              Small
+            </SliderMark>
+            <SliderMark
+              value={50}
+              mt="1"
+              ml="-2.5"
+              fontSize={transformFontSize("sm")}
+            >
+              Medium
             </SliderMark>
             <SliderMark
               value={100}
@@ -90,29 +139,12 @@ const ProfileSettings = () => {
               ml="-2.5"
               fontSize={transformFontSize("sm")}
             >
-              100%
-            </SliderMark>
-            <SliderMark
-              value={125}
-              mt="1"
-              ml="-2.5"
-              fontSize={transformFontSize("sm")}
-            >
-              125%
+              Large
             </SliderMark>
             <SliderTrack>
               <SliderFilledTrack />
             </SliderTrack>
-            <Tooltip
-              hasArrow
-              bg="gray.500"
-              color="white"
-              placement="top"
-              isOpen={showTooltip}
-              label={`${sliderValue}%`}
-            >
-              <SliderThumb />
-            </Tooltip>
+            <SliderThumb />
           </Slider>
           <Button
             {...buttonStyle}
@@ -122,35 +154,17 @@ const ProfileSettings = () => {
             transition="all 0.1s ease-in-out"
             fontSize={transformFontSize("md")}
             fontWeight="medium"
-            onClick={() =>
-              localStorage.setItem(
-                "fontMultiplier",
-                JSON.stringify(sliderValue)
-              )
-            }
+            onClick={() => {
+              setTextMultiplier(sliderValue);
+            }}
           >
             Save
           </Button>
         </HStack>
         <Spacer height={5} />
         <HStack p={4} gap={5}>
-          <Text fontSize={transformFontSize("xl")}>Set color palette</Text>
-          <RadioGroup defaultValue="2">
-            <Stack spacing={5} direction="row">
-              <Radio colorScheme="yellow" value="1">
-                Yellow
-              </Radio>
-              <Radio colorScheme="gray" value="2">
-                Gray
-              </Radio>
-              <Radio colorScheme="pink" value="3">
-                Pink
-              </Radio>
-              <Radio colorScheme="teal" value="4">
-                Teal
-              </Radio>
-            </Stack>
-          </RadioGroup>
+          <Text fontSize={transformFontSize("xl")}>Set preferred email</Text>
+          <Input value={email} onChange={(e) => setEmail(e.target.value)} />
           <Button
             {...buttonStyle}
             borderRadius={20}

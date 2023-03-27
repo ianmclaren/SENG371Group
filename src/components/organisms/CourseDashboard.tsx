@@ -13,6 +13,7 @@ import CourseCard from "../molecules/course/CourseCard";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { Term } from "../../utils/types";
+import { useNavigate } from "react-router-dom";
 
 const CourseDashboard = ({
   term,
@@ -30,6 +31,8 @@ const CourseDashboard = ({
   const filteredSearch = filteredCourses.filter((course) =>
     course.name.toLowerCase().includes(searchPrompt.toLowerCase())
   );
+
+  const navigate = useNavigate();
 
   return (
     <Box p={4}>
@@ -76,6 +79,16 @@ const CourseDashboard = ({
                   py={2}
                   px={4}
                   borderRadius={20}
+                  key={frequentAction.topic}
+                  onClick={() =>
+                    navigate({
+                      pathname: frequentAction.linkTo,
+                    })
+                  }
+                  cursor="pointer"
+                  _hover={{
+                    shadow: "xl",
+                  }}
                 >
                   <Text fontWeight="bold">{frequentAction.topic}</Text>
                   <Text>{frequentAction.courseName}</Text>
