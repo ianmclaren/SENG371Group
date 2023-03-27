@@ -77,6 +77,13 @@ export type FrequentAction = {
   linkTo: string;
 };
 
+export type Group = {
+  courseID: string;
+  id: string;
+  members: number;
+  max_members: number;
+};
+
 export type Quiz = {
   courseID: string;
   id: string;
