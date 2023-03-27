@@ -6,7 +6,7 @@
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs/en/)
   OR
 - [Docker](https://www.docker.com/)
 

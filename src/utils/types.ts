@@ -75,3 +75,16 @@ export type FrequentAction = {
   accessCount: number;
   timeRange: string;
 };
+
+export type Quiz = {
+  courseID: string;
+  id: string;
+  quizName: string;
+  due_date: string;
+  weight: number;
+  questionCount: number;
+  submitted: string;
+  graded: string;
+  synchronous: string;
+  percentage: number;
+};
