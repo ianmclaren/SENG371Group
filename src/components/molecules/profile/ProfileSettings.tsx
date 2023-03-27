@@ -16,19 +16,17 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React from "react";
 
-const ProfileSettings = () => {
-  const [textMultiplier, setTextMultiplier] = React.useState(50);
+const ProfileSettings = ({
+  textMultiplier,
+  setTextMultiplier,
+}: {
+  textMultiplier: number;
+  setTextMultiplier: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const [sliderValue, setSliderValue] = React.useState(50);
   const [email, setEmail] = React.useState("johnsmith@gmail.com");
-
-  useEffect(() => {
-    const savedValue = localStorage.getItem("fontMultiplier");
-    if (savedValue !== null) {
-      setTextMultiplier(JSON.parse(savedValue));
-    }
-  }, []);
 
   const buttonStyle = {
     bgColor: "gray.200",
@@ -74,22 +72,18 @@ const ProfileSettings = () => {
           : "xl";
       case "sm":
         return textMultiplier === 0
-          ? "2xs"
-          : textMultiplier === 25
           ? "xs"
-          : textMultiplier === 50
+          : textMultiplier === 25
           ? "sm"
-          : textMultiplier === 75
+          : textMultiplier === 50
           ? "md"
+          : textMultiplier === 75
+          ? "lg"
           : "lg";
       default:
         return size;
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem("fontMultiplier", JSON.stringify(textMultiplier));
-  }, [textMultiplier]);
 
   return (
     <HStack gap={10}>
