@@ -82,3 +82,17 @@ export type Group = {
     members: number;
     max_members: number;
 };
+
+export type Quiz = {
+  courseID: string;
+  id: string;
+  quizName: string;
+  due_date: string;
+  weight: number;
+  questionCount: number;
+  submitted: string;
+  graded: string;
+  synchronous: string;
+  percentage: number;
+};
+
