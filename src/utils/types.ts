@@ -60,13 +60,13 @@ export type Reply = {
 };
 
 export type Assignment = {
-  courseID: string;
-  id: string;
-  name: string;
-  due_date: string;
-  weight: number;
-  submitted: string;
-  graded: string;
+    courseID: string;
+    id: string;
+    name: string;
+    due_date: string;
+    weight: number;
+    submitted: string;
+    graded: string;
 };
 
 export type FrequentAction = {
@@ -74,6 +74,13 @@ export type FrequentAction = {
   courseName: string;
   accessCount: number;
   timeRange: string;
+};
+
+export type Group = {
+    courseID: string;
+    id: string;
+    members: number;
+    max_members: number;
 };
 
 export type Quiz = {
@@ -88,3 +95,4 @@ export type Quiz = {
   synchronous: string;
   percentage: number;
 };
+

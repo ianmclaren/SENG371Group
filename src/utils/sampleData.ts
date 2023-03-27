@@ -1,4 +1,4 @@
-import { Course, Discussion, FrequentAction, Assignment, Quiz } from "./types";
+import { Course, Discussion, FrequentAction, Assignment, Group, Quiz } from "./types";
 
 export const sampleCourses: Course[] = [
   {
@@ -705,6 +705,39 @@ export const sampleFrequentActions: FrequentAction[] = [
   },
 ];
 
+export const sampleGroups: Group[] = [
+    {
+        courseID: "1",
+        id: "1",
+        members: 0,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "2",
+        members: 0,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "3",
+        members: 3,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "4",
+        members: 4,
+        max_members: 4,
+    },
+    {
+        courseID: "1",
+        id: "5",
+        members: 0,
+        max_members: 4,
+    }
+];
+
 export const sampleQuizzes: Quiz[] = [
   {
     courseID: "1",
@@ -815,3 +848,4 @@ export const sampleQuizzes: Quiz[] = [
     percentage: 0
   }
 ]
+
