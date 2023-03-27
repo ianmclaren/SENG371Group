@@ -2,6 +2,8 @@
 
 ## SENG371 Spring 2023 - Group 4
 
+Find deployed version [here](https://ianmclaren.github.io/SENG371Group/)!
+
 ## Run Locally
 
 ### Prerequisites
