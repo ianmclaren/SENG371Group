@@ -1,4 +1,12 @@
-import { Box, Heading, VStack, HStack, Spacer, Text, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  VStack,
+  HStack,
+  Spacer,
+  Text,
+  Button,
+} from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { sampleCourses } from "../../../utils/sampleData";
 import CourseTitle from "../../atoms/course/CourseTitle";
@@ -7,7 +15,7 @@ import CourseHeader from "../../molecules/course/CourseHeader";
 const CourseHome = () => {
   let { courseid } = useParams();
   let course = sampleCourses.find((course) => course.id === courseid);
-  
+
   const navigate = useNavigate();
 
   const buttonStyle = {
@@ -58,10 +66,10 @@ const CourseHome = () => {
             fontSize="xl"
             onClick={() => {
               navigate({
-                pathname: `/course/${courseid}/Quizzes`,
+                pathname: `/course/${courseid}/quizzes`,
               });
             }}
-            >
+          >
             <VStack>
               <Text fontWeight="bold">Quizzes</Text>
               <Spacer h={3} />
@@ -81,7 +89,7 @@ const CourseHome = () => {
                 pathname: `/course/${courseid}/discussions`,
               });
             }}
-            >
+          >
             <VStack>
               <Text fontWeight="bold">Discussions</Text>
               <Spacer h={3} />
