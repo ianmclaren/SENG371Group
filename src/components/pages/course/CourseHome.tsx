@@ -1,3 +1,4 @@
+import { WarningTwoIcon } from "@chakra-ui/icons";
 import {
   Box,
   Heading,
@@ -20,8 +21,15 @@ const CourseHome = () => {
 
   const buttonStyle = {
     _dark: {
-      bgColor: "gray.300",
-      color: "black",
+      bgColor: "gray.600",
+      color: "white",
+    },
+    bgColor: "gray.100",
+    _hover: {
+      bgColor: "white",
+      _dark: {
+        bgColor: "gray.800",
+      },
     },
   };
 
@@ -30,6 +38,33 @@ const CourseHome = () => {
       <CourseHeader />
       <Box w="100%" h={0.5} bgColor="white" />
       {course && <CourseTitle course={course} />}
+      {course?.notifications?.map((notification) => (
+        <Box
+          key={notification}
+          display="inline-flex"
+          alignItems="center"
+          gap={2}
+          py={2}
+          px={4}
+          m={2}
+          ml={4}
+          bgColor="white"
+          _dark={{
+            bgColor: "gray.800",
+          }}
+          borderRadius="lg"
+        >
+          <WarningTwoIcon
+            color="orange.500"
+            _dark={{
+              color: "orange.300",
+            }}
+          />
+          <Text fontSize="xl" fontWeight="bold">
+            {notification}
+          </Text>
+        </Box>
+      ))}
       <VStack p={1}>
         <Box w="100%" p={4}>
           <Heading fontWeight="medium" size="lg">
@@ -38,7 +73,6 @@ const CourseHome = () => {
         </Box>
         <HStack gap={10} p={3}>
           <Button
-            bgColor="gray.200"
             p={20}
             borderRadius="lg"
             {...buttonStyle}
@@ -58,7 +92,6 @@ const CourseHome = () => {
             </VStack>
           </Button>
           <Button
-            bgColor="gray.200"
             p={20}
             borderRadius="lg"
             {...buttonStyle}
@@ -78,7 +111,6 @@ const CourseHome = () => {
             </VStack>
           </Button>
           <Button
-            bgColor="gray.200"
             p={20}
             borderRadius="lg"
             {...buttonStyle}

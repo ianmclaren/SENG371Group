@@ -26,13 +26,17 @@ const DiscussionTable = ({ discussions }: { discussions: Discussion[] }) => {
         size="md"
         borderRadius="md"
         backgroundColor="gray.200"
+        _dark={{
+          backgroundColor: "gray.600",
+          color: "white",
+        }}
       >
         <Thead>
           <Tr>
-            <Th fontSize="medium" _dark={{color: "black"}}>Topic</Th>
-            <Th fontSize="medium" _dark={{color: "black"}}>Date</Th>
-            <Th fontSize="medium" _dark={{color: "black"}}>Replies</Th>
-            <Th fontSize="medium" _dark={{color: "black"}}>Author</Th>
+            <Th fontSize="medium">Topic</Th>
+            <Th fontSize="medium">Date</Th>
+            <Th fontSize="medium">Replies</Th>
+            <Th fontSize="medium">Author</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -43,6 +47,7 @@ const DiscussionTable = ({ discussions }: { discussions: Discussion[] }) => {
                   _hover={{ color: "blue.800" }}
                   fontSize="medium"
                   color="blue.500"
+                  _dark={{ color: "blue.300" }}
                   cursor="pointer"
                   onClick={() =>
                     handleDiscussionClick(discussion.courseID, discussion.id)
@@ -50,17 +55,18 @@ const DiscussionTable = ({ discussions }: { discussions: Discussion[] }) => {
                 >
                   {discussion.topic}
                 </Td>
-                <Td fontSize="medium" _dark={{color: "gray.700"}}>{discussion.date}</Td>
-                <Td fontSize="medium" _dark={{color: "gray.700"}}>{discussion.numberReplies}</Td>
-                <Td fontSize="medium" _dark={{color: "gray.700"}}>{discussion.author}</Td>
+                <Td fontSize="medium">{discussion.date}</Td>
+                <Td fontSize="medium">{discussion.numberReplies}</Td>
+                <Td fontSize="medium">{discussion.author}</Td>
               </Tr>
             ))
           ) : (
-            <Heading 
-              _dark={{color: "gray.700"}} 
-              fontWeight="medium" 
-              fontSize="medium">
-                There are no active discussion topics
+            <Heading
+              _dark={{ color: "gray.700" }}
+              fontWeight="medium"
+              fontSize="medium"
+            >
+              There are no active discussion topics
             </Heading>
           )}
         </Tbody>

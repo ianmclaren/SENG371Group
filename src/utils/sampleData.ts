@@ -1,4 +1,11 @@
-import { Course, Discussion, FrequentAction, Assignment, Group, Quiz } from "./types";
+import {
+  Course,
+  Discussion,
+  FrequentAction,
+  Assignment,
+  Group,
+  Quiz,
+} from "./types";
 
 export const sampleCourses: Course[] = [
   {
@@ -690,52 +697,55 @@ export const sampleFrequentActions: FrequentAction[] = [
     courseName: "CSC 110",
     accessCount: 8,
     timeRange: "48h",
+    linkTo: "/course/1/assignments",
   },
   {
     topic: "Discussion 3",
     courseName: "BIO 150",
     accessCount: 5,
     timeRange: "24h",
+    linkTo: "/course/2/discussions",
   },
   {
     topic: "Partial Integration",
     courseName: "MATH 150",
     accessCount: 3,
     timeRange: "24h",
+    linkTo: "/course/3/assignments",
   },
 ];
 
 export const sampleGroups: Group[] = [
-    {
-        courseID: "1",
-        id: "1",
-        members: 0,
-        max_members: 4,
-    },
-    {
-        courseID: "1",
-        id: "2",
-        members: 0,
-        max_members: 4,
-    },
-    {
-        courseID: "1",
-        id: "3",
-        members: 3,
-        max_members: 4,
-    },
-    {
-        courseID: "1",
-        id: "4",
-        members: 4,
-        max_members: 4,
-    },
-    {
-        courseID: "1",
-        id: "5",
-        members: 0,
-        max_members: 4,
-    }
+  {
+    courseID: "1",
+    id: "1",
+    members: 0,
+    max_members: 4,
+  },
+  {
+    courseID: "1",
+    id: "2",
+    members: 0,
+    max_members: 4,
+  },
+  {
+    courseID: "1",
+    id: "3",
+    members: 3,
+    max_members: 4,
+  },
+  {
+    courseID: "1",
+    id: "4",
+    members: 4,
+    max_members: 4,
+  },
+  {
+    courseID: "1",
+    id: "5",
+    members: 0,
+    max_members: 4,
+  },
 ];
 
 export const sampleQuizzes: Quiz[] = [
@@ -749,7 +759,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "Yes",
     graded: "Yes",
     synchronous: "Yes",
-    percentage: 88
+    percentage: 88,
   },
   {
     courseID: "1",
@@ -761,7 +771,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "Yes",
     graded: "Yes",
     synchronous: "No",
-    percentage: 78
+    percentage: 78,
   },
   {
     courseID: "1",
@@ -773,7 +783,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "No",
     graded: "No",
     synchronous: "Yes",
-    percentage: 0
+    percentage: 0,
   },
   {
     courseID: "2",
@@ -785,7 +795,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "Yes",
     graded: "Yes",
     synchronous: "Yes",
-    percentage: 88
+    percentage: 88,
   },
   {
     courseID: "2",
@@ -797,7 +807,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "Yes",
     graded: "Yes",
     synchronous: "No",
-    percentage: 72
+    percentage: 72,
   },
   {
     courseID: "2",
@@ -809,7 +819,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "No",
     graded: "No",
     synchronous: "Yes",
-    percentage: 0
+    percentage: 0,
   },
   {
     courseID: "3",
@@ -821,7 +831,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "Yes",
     graded: "Yes",
     synchronous: "Yes",
-    percentage: 93
+    percentage: 93,
   },
   {
     courseID: "3",
@@ -833,7 +843,7 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "Yes",
     graded: "Yes",
     synchronous: "No",
-    percentage: 78
+    percentage: 78,
   },
   {
     courseID: "3",
@@ -845,7 +855,6 @@ export const sampleQuizzes: Quiz[] = [
     submitted: "Yes",
     graded: "No",
     synchronous: "Yes",
-    percentage: 0
-  }
-]
-
+    percentage: 0,
+  },
+];
