@@ -88,6 +88,9 @@ const CourseDashboard = ({
                   cursor="pointer"
                   _hover={{
                     shadow: "xl",
+                    _dark: {
+                      shadow: "dark-lg",
+                    },
                   }}
                 >
                   <Text fontWeight="bold">{frequentAction.topic}</Text>
