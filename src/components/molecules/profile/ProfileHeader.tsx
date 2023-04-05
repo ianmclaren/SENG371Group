@@ -1,6 +1,6 @@
 import { Box, Text, VStack, HStack, Button, Icon } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { transformFontSize } from "../../../utils/Helper";
+import { transformFontSize } from "../../../utils/helper";
 
 const ProfileHeader = () => {
   const buttonStyle = {
