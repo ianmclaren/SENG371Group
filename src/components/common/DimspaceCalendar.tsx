@@ -1,7 +1,7 @@
 import type {
-  EventObject,
   ExternalEventTypes,
   Options,
+  EventObject,
 } from "@toast-ui/calendar";
 import { TZDate } from "@toast-ui/calendar";
 import type { ChangeEvent } from "react";
@@ -16,6 +16,7 @@ import {
   Spacer,
   Stack,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import {
   addDate,
@@ -28,75 +29,81 @@ import {
 import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
 import { ViewType } from "../../utils/types";
+import EventDetailModal from "../molecules/EventDetailModal";
+import { App } from "./test";
+import CreateEventModal from "../molecules/CreateEventModal";
+
+const today = new TZDate();
+const viewModeOptions = [
+  {
+    title: "Monthly",
+    value: "month",
+  },
+  {
+    title: "Weekly",
+    value: "week",
+  },
+];
+const initialCalendars: Options["calendars"] = [
+  {
+    id: "0",
+    name: "Private",
+    backgroundColor: "#9e5fff",
+    borderColor: "#9e5fff",
+    dragBackgroundColor: "#9e5fff",
+  },
+  {
+    id: "1",
+    name: "Company",
+    backgroundColor: "#00a9ff",
+    borderColor: "#00a9ff",
+    dragBackgroundColor: "#00a9ff",
+  },
+];
+
+const initialEvents: Partial<EventObject>[] = [
+  {
+    id: "1",
+    calendarId: "0",
+    title: "TOAST UI Calendar Study",
+    category: "time",
+    start: today,
+    end: addHours(today, 3),
+  },
+  {
+    id: "2",
+    calendarId: "0",
+    title: "Practice",
+    category: "milestone",
+    start: addDate(today, 1),
+    end: addDate(today, 1),
+    isReadOnly: true,
+  },
+  {
+    id: "3",
+    calendarId: "0",
+    title: "FE Workshop",
+    category: "allday",
+    start: subtractDate(today, 2),
+    end: subtractDate(today, 1),
+    isReadOnly: true,
+  },
+  {
+    id: "4",
+    calendarId: "0",
+    title: "Report",
+    category: "time",
+    start: today,
+    end: addHours(today, 1),
+  },
+];
 
 const DimspaceCalendar = ({ view }: { view: ViewType }) => {
-  const today = new TZDate();
-  const viewModeOptions = [
-    {
-      title: "Monthly",
-      value: "month",
-    },
-    {
-      title: "Weekly",
-      value: "week",
-    },
-  ];
   const calendarRef = useRef<typeof Calendar>(null);
   const [selectedDateRangeText, setSelectedDateRangeText] = useState("");
   const [selectedView, setSelectedView] = useState(view);
-  const initialCalendars: Options["calendars"] = [
-    {
-      id: "0",
-      name: "Private",
-      backgroundColor: "#9e5fff",
-      borderColor: "#9e5fff",
-      dragBackgroundColor: "#9e5fff",
-    },
-    {
-      id: "1",
-      name: "Company",
-      backgroundColor: "#00a9ff",
-      borderColor: "#00a9ff",
-      dragBackgroundColor: "#00a9ff",
-    },
-  ];
 
-  const initialEvents: Partial<EventObject>[] = [
-    {
-      id: "1",
-      calendarId: "0",
-      title: "TOAST UI Calendar Study",
-      category: "time",
-      start: today,
-      end: addHours(today, 3),
-    },
-    {
-      id: "2",
-      calendarId: "0",
-      title: "Practice",
-      category: "milestone",
-      start: addDate(today, 1),
-      end: addDate(today, 1),
-      isReadOnly: true,
-    },
-    {
-      id: "3",
-      calendarId: "0",
-      title: "FE Workshop",
-      category: "allday",
-      start: subtractDate(today, 2),
-      end: subtractDate(today, 1),
-      isReadOnly: true,
-    },
-    {
-      id: "4",
-      calendarId: "0",
-      title: "Report",
-      category: "time",
-      start: today,
-      end: addHours(today, 1),
-    },
-  ];
+  const [selectedEvent, setSelectedEvent] = useState<Partial<EventObject>>({});
 
   const getCalInstance = useCallback(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -160,8 +167,18 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
   const onBeforeDeleteEvent: ExternalEventTypes["beforeDeleteEvent"] = (
     res
   ) => {
+    console.log(res);
     const { id, calendarId } = res;
     getCalInstance().deleteEvent(id, calendarId);
+  };
+
+  const onClickEvent: ExternalEventTypes["clickEvent"] = (res) => {
+    console.group("onClickEvent");
+    console.log("MouseEvent : ", res.nativeEvent);
+    console.log("Event Info : ", res.event);
+    console.groupEnd();
+    setSelectedEvent(res.event);
+    onEventDetailOpen();
   };
 
   const onChangeSelect = (ev: ChangeEvent<HTMLSelectElement>) => {
@@ -199,6 +216,7 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
   const onBeforeCreateEvent: ExternalEventTypes["beforeCreateEvent"] = (
     eventData
   ) => {
+    console.log(eventData);
     const event = {
       calendarId: eventData.calendarId || "",
       id: String(Math.random()),
@@ -216,7 +234,40 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
     getCalInstance().createEvents([event]);
   };
 
+  const onSelectDateTime: ExternalEventTypes["selectDateTime"] = (res) => {
+    console.group("onSelectDateTime");
+    console.log("Info : ", res);
+    console.groupEnd();
+    onEventCreateOpen();
+    getCalInstance().guide?.clearGuideElement();
+  };
+
+  const onBeforeCreateSchedule: ExternalEventTypes["beforeCreateSchedule"] = (
+    scheduleData
+  ) => {
+    console.log("beforeCreateScheduler", scheduleData);
+    scheduleData.guide.clearGuideElement();
+  };
+
   const isSmallScreen = useSmallScreen();
+
+  const {
+    isOpen: isEventDetailOpen,
+    onOpen: onEventDetailOpen,
+    onClose: onEventDetailClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isEventCreateOpen,
+    onOpen: onEventCreateOpen,
+    onClose: onEventCreateClose,
+  } = useDisclosure();
+
+  const onDeleteSelectedEvent = () => {
+    console.log("onDeleteSelectedEvent", selectedEvent);
+    getCalInstance().deleteEvent(selectedEvent.id, selectedEvent.calendarId);
+    onEventDetailClose();
+  };
 
   return (
     <Box>
@@ -262,10 +313,6 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
             return `[All day] ${event.title}`;
           },
         }}
-        useDetailPopup={true}
-        useFormPopup={true}
-        useCreationPopup={true}
-        useCreationPopupDetail={true}
         view={selectedView}
         week={{
           showTimezoneCollapseButton: true,
@@ -279,7 +326,22 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
         onBeforeDeleteEvent={onBeforeDeleteEvent}
         onBeforeUpdateEvent={onBeforeUpdateEvent}
         onBeforeCreateEvent={onBeforeCreateEvent}
+        onClickEvent={onClickEvent}
+        onBeforeCreateSchedule={onBeforeCreateSchedule}
+        useFormPopup={true}
+        // onSelectDateTime={onSelectDateTime}
       />
+      <EventDetailModal
+        isOpen={isEventDetailOpen}
+        onClose={onEventDetailClose}
+        event={selectedEvent}
+        onDelete={onDeleteSelectedEvent}
+      />
+      <CreateEventModal
+        isOpen={isEventCreateOpen}
+        onClose={onEventCreateClose}
+      />
+      <App view="week" />
     </Box>
   );
 };
