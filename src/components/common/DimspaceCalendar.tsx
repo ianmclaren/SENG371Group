@@ -30,7 +30,6 @@ import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
 import { ViewType } from "../../utils/types";
 import EventDetailModal from "../molecules/EventDetailModal";
-import { App } from "./test";
 import CreateEventModal from "../molecules/CreateEventModal";
 
 const today = new TZDate();

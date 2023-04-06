@@ -7,27 +7,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Text,
-  Heading,
 } from "@chakra-ui/react";
-import { EventObject } from "@toast-ui/calendar";
-
-const AllDayEventTag = () => (
-  <Text
-    fontSize="lg"
-    bgColor="gray.100"
-    _dark={{
-      bgColor: "gray.800",
-    }}
-    display="inline-block"
-    py={1}
-    px={2}
-    borderRadius="md"
-    mb={4}
-  >
-    All day event
-  </Text>
-);
 
 const CreateEventModal = ({
   onClose,
