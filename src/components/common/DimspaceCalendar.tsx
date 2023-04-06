@@ -1,9 +1,9 @@
-import type {
+import {
   ExternalEventTypes,
   Options,
   EventObject,
+  TZDate,
 } from "@toast-ui/calendar";
-import { TZDate } from "@toast-ui/calendar";
 import type { ChangeEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Calendar from "@toast-ui/react-calendar";
@@ -28,7 +28,7 @@ import {
 } from "../../utils/helper";
 import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
-import { ViewType } from "../../utils/types";
+import { SelectDateTimeInfo, ViewType } from "../../utils/types";
 import EventDetailModal from "../molecules/EventDetailModal";
 import CreateEventModal from "../molecules/CreateEventModal";
 
@@ -103,6 +103,9 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
   const [selectedView, setSelectedView] = useState(view);
 
   const [selectedEvent, setSelectedEvent] = useState<Partial<EventObject>>({});
+  const [selectedRange, setSelectedRange] = useState<
+    SelectDateTimeInfo | undefined
+  >(undefined);
 
   const getCalInstance = useCallback(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -237,6 +240,7 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
     console.group("onSelectDateTime");
     console.log("Info : ", res);
     console.groupEnd();
+    setSelectedRange(res);
     onEventCreateOpen();
     getCalInstance().guide?.clearGuideElement();
   };
@@ -246,6 +250,14 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
   ) => {
     console.log("beforeCreateScheduler", scheduleData);
     scheduleData.guide.clearGuideElement();
+  };
+
+  const onCreateEvent = (event: Partial<EventObject>) => {
+    console.log("onCreateEvent", event);
+    const inst = getCalInstance();
+    console.log("inst", inst);
+    inst.createEvents([event]);
+    inst.clearGridSelections();
   };
 
   const isSmallScreen = useSmallScreen();
@@ -259,8 +271,13 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
   const {
     isOpen: isEventCreateOpen,
     onOpen: onEventCreateOpen,
-    onClose: onEventCreateClose,
+    onClose: onEventCreateCloseTemp,
   } = useDisclosure();
+
+  const onEventCreateClose = () => {
+    getCalInstance().clearGridSelections();
+    onEventCreateCloseTemp();
+  };
 
   const onDeleteSelectedEvent = () => {
     console.log("onDeleteSelectedEvent", selectedEvent);
@@ -327,8 +344,7 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
         onBeforeCreateEvent={onBeforeCreateEvent}
         onClickEvent={onClickEvent}
         onBeforeCreateSchedule={onBeforeCreateSchedule}
-        useFormPopup={true}
-        // onSelectDateTime={onSelectDateTime}
+        onSelectDateTime={onSelectDateTime}
       />
       <EventDetailModal
         isOpen={isEventDetailOpen}
@@ -336,10 +352,14 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
         event={selectedEvent}
         onDelete={onDeleteSelectedEvent}
       />
-      <CreateEventModal
-        isOpen={isEventCreateOpen}
-        onClose={onEventCreateClose}
-      />
+      {selectedRange && (
+        <CreateEventModal
+          onCreate={onCreateEvent}
+          selectedRange={selectedRange}
+          isOpen={isEventCreateOpen}
+          onClose={onEventCreateClose}
+        />
+      )}
     </Box>
   );
 };

@@ -101,3 +101,11 @@ export type Quiz = {
   synchronous: string;
   percentage: number;
 };
+
+export type SelectDateTimeInfo = {
+  start: Date;
+  end: Date;
+  isAllday: boolean;
+  nativeEvent?: MouseEvent;
+  gridSelectionElements: Element[];
+};

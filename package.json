@@ -17,6 +17,8 @@
     "@types/react-dom": "^18.0.10",
     "framer-motion": "^6.5.1",
     "react": "^18.2.0",
+    "react-date-picker": "^10.0.2",
+    "react-datetime-picker": "^5.0.2",
     "react-dom": "^18.2.0",
     "react-icons": "^3.11.0",
     "react-router-dom": "^6.8.0",
