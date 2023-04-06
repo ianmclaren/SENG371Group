@@ -341,7 +341,6 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
         isOpen={isEventCreateOpen}
         onClose={onEventCreateClose}
       />
-      <App view="week" />
     </Box>
   );
 };
