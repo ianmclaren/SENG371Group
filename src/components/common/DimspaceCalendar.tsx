@@ -17,6 +17,7 @@ import {
   Stack,
   Text,
   useDisclosure,
+  useToken,
 } from "@chakra-ui/react";
 import {
   addDate,
@@ -31,6 +32,7 @@ import "tui-time-picker/dist/tui-time-picker.css";
 import { SelectDateTimeInfo, ViewType } from "../../utils/types";
 import EventDetailModal from "../molecules/EventDetailModal";
 import CreateEventModal from "../molecules/CreateEventModal";
+import { sampleCourses } from "../../utils/sampleData";
 
 const today = new TZDate();
 const viewModeOptions = [
@@ -43,27 +45,11 @@ const viewModeOptions = [
     value: "week",
   },
 ];
-const initialCalendars: Options["calendars"] = [
-  {
-    id: "0",
-    name: "Private",
-    backgroundColor: "#9e5fff",
-    borderColor: "#9e5fff",
-    dragBackgroundColor: "#9e5fff",
-  },
-  {
-    id: "1",
-    name: "Company",
-    backgroundColor: "#00a9ff",
-    borderColor: "#00a9ff",
-    dragBackgroundColor: "#00a9ff",
-  },
-];
 
 const initialEvents: Partial<EventObject>[] = [
   {
     id: "1",
-    calendarId: "0",
+    calendarId: "1",
     title: "TOAST UI Calendar Study",
     category: "time",
     start: today,
@@ -71,7 +57,7 @@ const initialEvents: Partial<EventObject>[] = [
   },
   {
     id: "2",
-    calendarId: "0",
+    calendarId: "2",
     title: "Practice",
     category: "milestone",
     start: addDate(today, 1),
@@ -80,7 +66,7 @@ const initialEvents: Partial<EventObject>[] = [
   },
   {
     id: "3",
-    calendarId: "0",
+    calendarId: "3",
     title: "FE Workshop",
     category: "allday",
     start: subtractDate(today, 2),
@@ -89,7 +75,7 @@ const initialEvents: Partial<EventObject>[] = [
   },
   {
     id: "4",
-    calendarId: "0",
+    calendarId: "4",
     title: "Report",
     category: "time",
     start: today,
@@ -106,6 +92,16 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
   const [selectedRange, setSelectedRange] = useState<
     SelectDateTimeInfo | undefined
   >(undefined);
+
+  const initialCalendars: Options["calendars"] = sampleCourses.map(
+    (course) => ({
+      id: course.id,
+      name: course.name,
+      backgroundColor: course.color,
+      borderColor: course.color,
+      dragBackgroundColor: course.darkColor,
+    })
+  );
 
   const getCalInstance = useCallback(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

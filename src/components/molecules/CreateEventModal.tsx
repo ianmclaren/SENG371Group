@@ -11,6 +11,11 @@ import {
   Input,
   ButtonGroup,
   VStack,
+  Popover,
+  PopoverTrigger,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
 } from "@chakra-ui/react";
 import { SelectDateTimeInfo } from "../../utils/types";
 import { EventObject } from "@toast-ui/calendar";
@@ -22,6 +27,7 @@ import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
+import { sampleCourses } from "../../utils/sampleData";
 
 const CreateEventModal = ({
   selectedRange,
@@ -38,6 +44,8 @@ const CreateEventModal = ({
   const [startDate, setStartDate] = useState<Date>(selectedRange.start);
   const [endDate, setEndDate] = useState<Date>(selectedRange.end);
   const [isAllday, setIsAllday] = useState(selectedRange.isAllday);
+  const [course, setCourse] = useState("1");
+  const [isCourseSelectOpen, setIsCourseSelectOpen] = useState(false);
 
   useEffect(() => {
     setStartDate(selectedRange.start);
@@ -57,6 +65,48 @@ const CreateEventModal = ({
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           />
+          <Popover
+            isOpen={isCourseSelectOpen}
+            onOpen={() => setIsCourseSelectOpen(true)}
+            onClose={() => setIsCourseSelectOpen(false)}
+          >
+            <PopoverTrigger>
+              <Button
+                bgColor={sampleCourses.find((c) => c.id === course)?.color}
+                _hover={{
+                  bgColor: sampleCourses.find((c) => c.id === course)
+                    ?.darkColor,
+
+                  color: "white",
+                }}
+              >
+                {sampleCourses.find((c) => c.id === course)?.name ||
+                  "Select Course"}
+              </Button>
+            </PopoverTrigger>
+            <PopoverArrow />
+            <PopoverBody>
+              <PopoverContent>
+                <ButtonGroup isAttached flexDirection="column">
+                  {sampleCourses.map((c) => (
+                    <Button
+                      isActive={c.id === course}
+                      _active={{
+                        bgColor: c.color,
+                      }}
+                      key={c.id}
+                      onClick={() => {
+                        setCourse(c.id);
+                        setIsCourseSelectOpen(false);
+                      }}
+                    >
+                      {c.name}
+                    </Button>
+                  ))}
+                </ButtonGroup>
+              </PopoverContent>
+            </PopoverBody>
+          </Popover>
           <ButtonGroup isAttached mb={4}>
             <Button
               colorScheme="blue"
@@ -73,6 +123,7 @@ const CreateEventModal = ({
               Time-based
             </Button>
           </ButtonGroup>
+
           <VStack align="start">
             <Heading size="md">Start</Heading>
             {isAllday ? (
@@ -115,6 +166,8 @@ const CreateEventModal = ({
                 title: title.trim(),
                 start: startDate,
                 end: endDate,
+                isAllday,
+                calendarId: course,
               });
               onClose();
             }}

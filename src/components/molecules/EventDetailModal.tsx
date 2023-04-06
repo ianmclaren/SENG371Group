@@ -11,6 +11,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { EventObject } from "@toast-ui/calendar";
+import { sampleCourses } from "../../utils/sampleData";
 
 const AllDayEventTag = () => (
   <Text
@@ -28,6 +29,28 @@ const AllDayEventTag = () => (
     All day event
   </Text>
 );
+
+const CalendarTag = ({ courseId }: { courseId: string }) => {
+  const course = sampleCourses.find((course) => course.id === courseId);
+
+  return (
+    <Text
+      fontSize="lg"
+      bgColor={course?.color || "gray.100"}
+      _dark={{
+        bgColor: course?.darkColor || "gray.800",
+      }}
+      display="inline-block"
+      py={1}
+      px={2}
+      borderRadius="md"
+      mb={4}
+      mr={2}
+    >
+      {course?.name || `Calendar with id ${courseId}`}
+    </Text>
+  );
+};
 
 const EventDetailModal = ({
   event,
@@ -47,6 +70,7 @@ const EventDetailModal = ({
         <ModalHeader>{event.title}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
+          <CalendarTag courseId={event.calendarId} />
           {event.isAllday && <AllDayEventTag />}
           <Heading size="md">Start</Heading>
           <Text fontSize="lg">
