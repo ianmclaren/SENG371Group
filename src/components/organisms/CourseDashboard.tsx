@@ -14,6 +14,8 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { Term } from "../../utils/types";
 import { useNavigate } from "react-router-dom";
+import KanbanModal from "../molecules/kanban/KanbanModal";
+
 
 const CourseDashboard = ({
   term,
@@ -37,6 +39,7 @@ const CourseDashboard = ({
   return (
     <Box p={4}>
       <HStack justify="end">
+        <KanbanModal/>
         <HStack
           onClick={() => setDisplayCompleted(!displayCompleted)}
           cursor="pointer"
@@ -44,6 +47,7 @@ const CourseDashboard = ({
             textDecoration: "underline",
           }}
         >
+          
           <Icon as={displayCompleted ? BsEye : BsEyeSlash} fontSize="xl" />
           <Text fontSize="xl">
             {displayCompleted ? "Hide " : "Show "}

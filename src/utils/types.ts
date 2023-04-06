@@ -96,3 +96,7 @@ export type Quiz = {
   synchronous: string;
   percentage: number;
 };
+
+export interface Cards {
+  title: string;
+}
