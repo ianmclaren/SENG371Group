@@ -19,7 +19,7 @@ const KanbanModal = () => {
         <Modal 
           isOpen={isOpen}
           onClose={onClose}
-          size={'4xl'}
+          size={'5xl'}
           isCentered
           >
           <ModalOverlay 

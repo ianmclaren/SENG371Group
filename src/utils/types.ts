@@ -99,4 +99,6 @@ export type Quiz = {
 
 export interface Cards {
   title: string;
+  courseName: string;
+  deadline: string;
 }
