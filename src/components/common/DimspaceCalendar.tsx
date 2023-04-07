@@ -93,6 +93,19 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
     SelectDateTimeInfo | undefined
   >(undefined);
 
+  var allEvents = initialEvents;
+
+  if (localStorage.getItem("calendar-events") === null) {
+    localStorage.setItem("calendar-events", JSON.stringify(initialEvents))
+  }
+  else {
+    allEvents = JSON.parse(localStorage.getItem("calendar-events") || '').map((event: Partial<EventObject>) => ({
+      ...event,
+      start: new TZDate(event.start?.d?.d || event.start),
+      end: new TZDate(event.end?.d?.d || event.end),
+    }));
+  }
+
   const initialCalendars: Options["calendars"] = sampleCourses.map(
     (course) => ({
       id: course.id,
@@ -254,6 +267,10 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
     console.log("inst", inst);
     inst.createEvents([event]);
     inst.clearGridSelections();
+
+    var events = JSON.parse(localStorage.getItem("calendar-events") || '');
+    events.push(event);
+    localStorage.setItem("calendar-events", JSON.stringify(events));
   };
 
   const isSmallScreen = useSmallScreen();
@@ -278,6 +295,11 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
   const onDeleteSelectedEvent = () => {
     console.log("onDeleteSelectedEvent", selectedEvent);
     getCalInstance().deleteEvent(selectedEvent.id, selectedEvent.calendarId);
+
+    var events = JSON.parse(localStorage.getItem("calendar-events") || '');
+    events = events.filter((e: Partial<EventObject>) => (e.id !== selectedEvent.id && e.calendarId !== selectedEvent.calendarId));
+    localStorage.setItem("calendar-events", JSON.stringify(events));
+    
     onEventDetailClose();
   };
 
@@ -316,7 +338,7 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
         height="900px"
         calendars={initialCalendars}
         month={{ startDayOfWeek: 1 }}
-        events={initialEvents}
+        events={allEvents}
         template={{
           milestone(event) {
             return `<span style="color: #fff; background-color: ${event.backgroundColor};">${event.title}</span>`;
