@@ -59,6 +59,19 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
     SelectDateTimeInfo | undefined
   >(undefined);
 
+  var allEvents = courseEvents;
+
+  if (localStorage.getItem("calendar-events") === null) {
+    localStorage.setItem("calendar-events", JSON.stringify(courseEvents))
+  }
+  else {
+    allEvents = JSON.parse(localStorage.getItem("calendar-events") || '').map((event: Partial<EventObject>) => ({
+      ...event,
+      start: new TZDate(event.start?.d?.d || event.start),
+      end: new TZDate(event.end?.d?.d || event.end),
+    }));
+  }
+
   const initialCalendars: Options["calendars"] = sampleCourses.map(
     (course) => ({
       id: course.id,
@@ -220,6 +233,10 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
     console.log("inst", inst);
     inst.createEvents([event]);
     inst.clearGridSelections();
+
+    var events = JSON.parse(localStorage.getItem("calendar-events") || '');
+    events.push(event);
+    localStorage.setItem("calendar-events", JSON.stringify(events));
   };
 
   const isSmallScreen = useSmallScreen();
@@ -244,6 +261,11 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
   const onDeleteSelectedEvent = () => {
     console.log("onDeleteSelectedEvent", selectedEvent);
     getCalInstance().deleteEvent(selectedEvent.id, selectedEvent.calendarId);
+
+    var events = JSON.parse(localStorage.getItem("calendar-events") || '');
+    events = events.filter((e: Partial<EventObject>) => (e.id !== selectedEvent.id && e.calendarId !== selectedEvent.calendarId));
+    localStorage.setItem("calendar-events", JSON.stringify(events));
+    
     onEventDetailClose();
   };
 
@@ -282,7 +304,7 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
         height="900px"
         calendars={initialCalendars}
         month={{ startDayOfWeek: 1 }}
-        events={courseEvents.filter((event) => (courseNum) ? event.calendarId === courseNum : true )}
+        events={allEvents.filter((event) => (courseNum) ? event.calendarId === courseNum : true )}
         template={{
           milestone(event) {
             return `<span style="color: #fff; background-color: ${event.backgroundColor};">${event.title}</span>`;
