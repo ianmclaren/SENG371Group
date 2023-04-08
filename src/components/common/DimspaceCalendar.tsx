@@ -29,10 +29,11 @@ import {
 } from "../../utils/helper";
 import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
-import { SelectDateTimeInfo, ViewType } from "../../utils/types";
+import { SelectDateTimeInfo, ViewType, courseNumType} from "../../utils/types";
 import EventDetailModal from "../molecules/EventDetailModal";
 import CreateEventModal from "../molecules/CreateEventModal";
 import { sampleCourses } from "../../utils/sampleData";
+import { calendarContent } from "../../utils/sampleData/calendar";
 
 const today = new TZDate();
 const viewModeOptions = [
@@ -46,44 +47,9 @@ const viewModeOptions = [
   },
 ];
 
-const initialEvents: Partial<EventObject>[] = [
-  {
-    id: "1",
-    calendarId: "1",
-    title: "TOAST UI Calendar Study",
-    category: "time",
-    start: today,
-    end: addHours(today, 3),
-  },
-  {
-    id: "2",
-    calendarId: "2",
-    title: "Practice",
-    category: "milestone",
-    start: addDate(today, 1),
-    end: addDate(today, 1),
-    isReadOnly: true,
-  },
-  {
-    id: "3",
-    calendarId: "3",
-    title: "FE Workshop",
-    category: "allday",
-    start: subtractDate(today, 2),
-    end: subtractDate(today, 1),
-    isReadOnly: true,
-  },
-  {
-    id: "4",
-    calendarId: "4",
-    title: "Report",
-    category: "time",
-    start: today,
-    end: addHours(today, 1),
-  },
-];
+const courseEvents: Partial<EventObject>[] = calendarContent;
 
-const DimspaceCalendar = ({ view }: { view: ViewType }) => {
+const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: courseNumType }) => {
   const calendarRef = useRef<typeof Calendar>(null);
   const [selectedDateRangeText, setSelectedDateRangeText] = useState("");
   const [selectedView, setSelectedView] = useState(view);
@@ -316,7 +282,7 @@ const DimspaceCalendar = ({ view }: { view: ViewType }) => {
         height="900px"
         calendars={initialCalendars}
         month={{ startDayOfWeek: 1 }}
-        events={initialEvents}
+        events={courseEvents.filter((event) => (courseNum) ? event.calendarId === courseNum : true )}
         template={{
           milestone(event) {
             return `<span style="color: #fff; background-color: ${event.backgroundColor};">${event.title}</span>`;

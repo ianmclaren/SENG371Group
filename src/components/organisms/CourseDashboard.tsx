@@ -56,7 +56,7 @@ const CourseDashboard = ({
       </HStack>
       <Stack align="start" p={4} direction={isSmallScreen ? "column" : "row"}>
         <Box w={isSmallScreen ? "100%" : "50%"}>
-          <DimspaceCalendar view="month" />
+          <DimspaceCalendar view="month" courseNum={undefined}/>
         </Box>
         <VStack w={isSmallScreen ? "100%" : "50%"} align="stretch">
           <FrequentActions />
