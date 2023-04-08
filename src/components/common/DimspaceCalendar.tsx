@@ -25,6 +25,7 @@ import EventDetailModal from "../molecules/EventDetailModal";
 import CreateEventModal from "../molecules/CreateEventModal";
 import { sampleCourses } from "../../utils/sampleData";
 import { courseEvents } from "../../utils/sampleData/calendar";
+import { v4 as uuidv4 } from "uuid";
 
 const viewModeOptions = [
   {
@@ -145,14 +146,6 @@ const DimspaceCalendar = ({
     updateRenderRangeText();
   }, [selectedView, updateRenderRangeText]);
 
-  const onBeforeDeleteEvent: ExternalEventTypes["beforeDeleteEvent"] = (
-    res
-  ) => {
-    console.log(res);
-    const { id, calendarId } = res;
-    getCalInstance().deleteEvent(id, calendarId);
-  };
-
   const onClickEvent: ExternalEventTypes["clickEvent"] = (res) => {
     console.group("onClickEvent");
     console.log("MouseEvent : ", res.nativeEvent);
@@ -169,40 +162,6 @@ const DimspaceCalendar = ({
   const onClickNav = (option: "prev" | "next" | "today") => {
     getCalInstance()[option]();
     updateRenderRangeText();
-  };
-
-  const onBeforeUpdateEvent: ExternalEventTypes["beforeUpdateEvent"] = (
-    updateData
-  ) => {
-    const targetEvent = updateData.event;
-    const changes = { ...updateData.changes };
-
-    getCalInstance().updateEvent(
-      targetEvent.id,
-      targetEvent.calendarId,
-      changes
-    );
-  };
-
-  const onBeforeCreateEvent: ExternalEventTypes["beforeCreateEvent"] = (
-    eventData
-  ) => {
-    console.log(eventData);
-    const event = {
-      calendarId: eventData.calendarId || "",
-      id: String(Math.random()),
-      title: eventData.title,
-      isAllday: eventData.isAllday,
-      start: eventData.start,
-      end: eventData.end,
-      category: eventData.isAllday ? "allday" : "time",
-      dueDateClass: "",
-      location: eventData.location,
-      state: eventData.state,
-      isPrivate: eventData.isPrivate,
-    };
-
-    getCalInstance().createEvents([event]);
   };
 
   const onSelectDateTime: ExternalEventTypes["selectDateTime"] = (res) => {
@@ -259,6 +218,7 @@ const DimspaceCalendar = ({
     const eventsStored = JSON.parse(
       localStorage.getItem("calendar-events") || ""
     );
+
     const events = eventsStored.filter(
       (e: Partial<EventObject>) =>
         e.id !== selectedEvent.id && e.calendarId !== selectedEvent.calendarId
@@ -326,9 +286,6 @@ const DimspaceCalendar = ({
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         ref={calendarRef}
-        onBeforeDeleteEvent={onBeforeDeleteEvent}
-        onBeforeUpdateEvent={onBeforeUpdateEvent}
-        onBeforeCreateEvent={onBeforeCreateEvent}
         onClickEvent={onClickEvent}
         onBeforeCreateSchedule={onBeforeCreateSchedule}
         onSelectDateTime={onSelectDateTime}

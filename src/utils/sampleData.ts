@@ -31,7 +31,7 @@ export const sampleCourses: Course[] = [
     year: 2023,
     professor: "Jane Doe",
     completed: false,
-    notifications: ["Midterm is coming up!"],
+    notifications: ["Quiz 2 is coming up!"],
     color: "#4299E1",
     content: [
       {

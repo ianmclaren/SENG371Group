@@ -28,6 +28,7 @@ import "react-clock/dist/Clock.css";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { sampleCourses } from "../../utils/sampleData";
+import { v4 as uuidv4 } from "uuid";
 
 const CreateEventModal = ({
   selectedRange,
@@ -168,6 +169,7 @@ const CreateEventModal = ({
                 end: endDate,
                 isAllday,
                 calendarId: course,
+                id: uuidv4(),
               });
               onClose();
             }}

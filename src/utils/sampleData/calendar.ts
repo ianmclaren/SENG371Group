@@ -1,6 +1,7 @@
 import { EventObject } from "@toast-ui/calendar";
 import { TZDate } from "@toast-ui/calendar";
 import { addDate } from "../helper";
+import { v4 as uuidv4 } from "uuid";
 
 // Create a new date object with the current date but with the time set to 23:59:59
 const today = new TZDate(new Date().setHours(23, 59, 59));
@@ -8,7 +9,7 @@ const today = new TZDate(new Date().setHours(23, 59, 59));
 //Note: calendarId is the courseID for the event
 export const courseEvents: Partial<EventObject>[] = [
   {
-    id: "1",
+    id: uuidv4(),
     calendarId: "1",
     title: "Assignment 1",
     category: "milestone",
@@ -16,7 +17,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "2",
+    id: uuidv4(),
     calendarId: "1",
     title: "Assignment 2",
     category: "milestone",
@@ -24,7 +25,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "3",
+    id: uuidv4(),
     calendarId: "1",
     title: "Assignment 3",
     category: "milestone",
@@ -32,7 +33,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "1",
+    id: uuidv4(),
     calendarId: "2",
     title: "Presentation",
     category: "milestone",
@@ -40,7 +41,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "2",
+    id: uuidv4(),
     calendarId: "2",
     title: "Assignment 1",
     category: "milestone",
@@ -48,7 +49,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "3",
+    id: uuidv4(),
     calendarId: "2",
     title: "Project",
     start: addDate(today, 9).toDate().toISOString(),
@@ -57,7 +58,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "1",
+    id: uuidv4(),
     calendarId: "3",
     title: "Project",
     category: "milestone",
@@ -65,7 +66,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "1",
+    id: uuidv4(),
     calendarId: "4",
     title: "Design Project",
     start: addDate(today, 6).toDate().toISOString(),
@@ -73,7 +74,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "11",
+    id: uuidv4(),
     calendarId: "1",
     title: "Quiz 1",
     category: "milestone",
@@ -81,7 +82,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "12",
+    id: uuidv4(),
     calendarId: "1",
     title: "Quiz 2",
     category: "milestone",
@@ -89,7 +90,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "13",
+    id: uuidv4(),
     calendarId: "1",
     title: "Quiz 3",
     category: "milestone",
@@ -97,7 +98,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "14",
+    id: uuidv4(),
     calendarId: "2",
     title: "Quiz 1",
     category: "milestone",
@@ -105,7 +106,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "15",
+    id: uuidv4(),
     calendarId: "2",
     title: "Quiz 2",
     category: "milestone",
@@ -113,7 +114,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "16",
+    id: uuidv4(),
     calendarId: "2",
     title: "Quiz 3",
     category: "milestone",
@@ -121,7 +122,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "17",
+    id: uuidv4(),
     calendarId: "3",
     title: "Quiz 1",
     category: "milestone",
@@ -129,7 +130,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "18",
+    id: uuidv4(),
     calendarId: "3",
     title: "Quiz 2",
     category: "milestone",
@@ -137,7 +138,7 @@ export const courseEvents: Partial<EventObject>[] = [
     isReadOnly: true,
   },
   {
-    id: "19",
+    id: uuidv4(),
     calendarId: "3",
     title: "Quiz 3",
     category: "milestone",

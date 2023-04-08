@@ -134,7 +134,7 @@ const CourseHome = () => {
             </Button>
           </HStack>
         </VStack>
-        <Box w="50%">
+        <Box w="80%">
           <DimspaceCalendar view="month" courseId={courseid} />
         </Box>
       </VStack>

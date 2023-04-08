@@ -17,6 +17,7 @@ import "@toast-ui/calendar/dist/toastui-calendar.min.css";
 import FrequentActions from "../molecules/FrequentActions";
 import { useSmallScreen } from "../../utils/helper";
 import DimspaceCalendar from "../common/DimspaceCalendar";
+import { CalendarIcon } from "@chakra-ui/icons";
 
 const CourseDashboard = ({
   term,
@@ -37,9 +38,23 @@ const CourseDashboard = ({
 
   const isSmallScreen = useSmallScreen();
 
+  const [isCalendarView, setIsCalendarView] = useState(false);
+
   return (
     <Box p={4}>
-      <HStack justify="end">
+      <HStack justify="space-between" w="100%">
+        <HStack
+          onClick={() => setIsCalendarView(!isCalendarView)}
+          cursor="pointer"
+          _hover={{
+            textDecoration: "underline",
+          }}
+        >
+          <CalendarIcon />
+          <Text fontSize="xl">
+            {isCalendarView ? "Hide calendar" : "Show calendar"}
+          </Text>
+        </HStack>
         <HStack
           onClick={() => setDisplayCompleted(!displayCompleted)}
           cursor="pointer"
@@ -55,10 +70,15 @@ const CourseDashboard = ({
         </HStack>
       </HStack>
       <Stack align="start" p={4} direction={isSmallScreen ? "column" : "row"}>
-        <Box w={isSmallScreen ? "100%" : "50%"}>
-          <DimspaceCalendar view="month" courseId={undefined} />
-        </Box>
-        <VStack w={isSmallScreen ? "100%" : "50%"} align="stretch">
+        {isCalendarView && (
+          <Box w={isSmallScreen ? "100%" : "50%"}>
+            <DimspaceCalendar view="month" courseId={undefined} />
+          </Box>
+        )}
+        <VStack
+          w={isSmallScreen || !isCalendarView ? "100%" : "50%"}
+          align="stretch"
+        >
           <FrequentActions />
           <Flex
             gap={4}
