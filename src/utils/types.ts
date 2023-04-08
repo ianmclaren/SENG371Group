@@ -28,7 +28,6 @@ export type Course = {
 };
 
 export type ViewType = "month" | "week" | "day";
-export type courseNumType = string | undefined;
 
 export type CourseContent = {
   week: number;

@@ -73,33 +73,37 @@ const EventDetailModal = ({
           <CalendarTag courseId={event.calendarId} />
           {event.isAllday && <AllDayEventTag />}
           <Heading size="md">Start</Heading>
-          <Text fontSize="lg">
-            {event.start?.toDate().toLocaleDateString([], {
-              year: "numeric",
-              weekday: "long",
-              month: "long",
-              day: "numeric",
-            })}
-            ,{" "}
-            {event.start?.toDate().toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </Text>
+          {event.start && (
+            <Text fontSize="lg">
+              {event.start.toDate().toLocaleDateString([], {
+                year: "numeric",
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+              })}
+              ,{" "}
+              {event.start.toDate().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </Text>
+          )}
           <Heading size="md">End</Heading>
-          <Text fontSize="lg">
-            {event.end?.toDate().toLocaleDateString([], {
-              year: "numeric",
-              weekday: "long",
-              month: "long",
-              day: "numeric",
-            })}
-            ,{" "}
-            {event.end?.toDate().toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </Text>
+          {event.end && (
+            <Text fontSize="lg">
+              {event.end.toDate().toLocaleDateString([], {
+                year: "numeric",
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+              })}
+              ,{" "}
+              {event.end.toDate().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </Text>
+          )}
         </ModalBody>
         <ModalFooter>
           {!event.isReadOnly && (

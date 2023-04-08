@@ -14,8 +14,6 @@ import CourseTitle from "../../atoms/course/CourseTitle";
 import CourseHeader from "../../molecules/course/CourseHeader";
 import DimspaceCalendar from "../../common/DimspaceCalendar";
 
-
-
 const CourseHome = () => {
   let { courseid } = useParams();
   let course = sampleCourses.find((course) => course.id === courseid);
@@ -68,7 +66,7 @@ const CourseHome = () => {
           </Text>
         </Box>
       ))}
-      
+
       <VStack>
         <VStack p={1}>
           <Box w="100%" p={4}>
@@ -137,7 +135,7 @@ const CourseHome = () => {
           </HStack>
         </VStack>
         <Box w="50%">
-          <DimspaceCalendar view="month" courseNum={courseid}/>
+          <DimspaceCalendar view="month" courseId={courseid} />
         </Box>
       </VStack>
     </Box>

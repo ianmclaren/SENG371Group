@@ -1,9 +1,4 @@
-import {
-  ExternalEventTypes,
-  Options,
-  EventObject,
-  TZDate,
-} from "@toast-ui/calendar";
+import { ExternalEventTypes, Options, EventObject } from "@toast-ui/calendar";
 import type { ChangeEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Calendar from "@toast-ui/react-calendar";
@@ -17,25 +12,20 @@ import {
   Stack,
   Text,
   useDisclosure,
-  useToken,
 } from "@chakra-ui/react";
 import {
-  addDate,
-  addHours,
   convertIntoReadableMonth,
   convertIntoReadableRange,
-  subtractDate,
   useSmallScreen,
 } from "../../utils/helper";
 import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
-import { SelectDateTimeInfo, ViewType, courseNumType} from "../../utils/types";
+import { SelectDateTimeInfo, ViewType } from "../../utils/types";
 import EventDetailModal from "../molecules/EventDetailModal";
 import CreateEventModal from "../molecules/CreateEventModal";
 import { sampleCourses } from "../../utils/sampleData";
-import { calendarContent } from "../../utils/sampleData/calendar";
+import { courseEvents } from "../../utils/sampleData/calendar";
 
-const today = new TZDate();
 const viewModeOptions = [
   {
     title: "Monthly",
@@ -47,9 +37,13 @@ const viewModeOptions = [
   },
 ];
 
-const courseEvents: Partial<EventObject>[] = calendarContent;
-
-const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: courseNumType }) => {
+const DimspaceCalendar = ({
+  view,
+  courseId,
+}: {
+  view: ViewType;
+  courseId: string | undefined;
+}) => {
   const calendarRef = useRef<typeof Calendar>(null);
   const [selectedDateRangeText, setSelectedDateRangeText] = useState("");
   const [selectedView, setSelectedView] = useState(view);
@@ -59,18 +53,28 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
     SelectDateTimeInfo | undefined
   >(undefined);
 
-  var allEvents = courseEvents;
+  const [allEvents, setAllEvents] = useState<EventObject[]>(courseEvents);
 
-  if (localStorage.getItem("calendar-events") === null) {
-    localStorage.setItem("calendar-events", JSON.stringify(courseEvents))
-  }
-  else {
-    allEvents = JSON.parse(localStorage.getItem("calendar-events") || '').map((event: Partial<EventObject>) => ({
-      ...event,
-      start: new TZDate(event.start?.d?.d || event.start),
-      end: new TZDate(event.end?.d?.d || event.end),
-    }));
-  }
+  useEffect(() => {
+    if (courseId) {
+      setAllEvents(
+        courseEvents.filter((event) => event.calendarId === courseId)
+      );
+    } else {
+      setAllEvents(courseEvents);
+    }
+  }, [courseId]);
+
+  useEffect(() => {
+    console.log("Checking localstorage...");
+    if (localStorage.getItem("calendar-events") !== null) {
+      console.log("Found localstorage!");
+      setAllEvents(JSON.parse(localStorage.getItem("calendar-events") || ""));
+    } else {
+      console.log("No localstorage found.");
+      localStorage.setItem("calendar-events", JSON.stringify(courseEvents));
+    }
+  }, []);
 
   const initialCalendars: Options["calendars"] = sampleCourses.map(
     (course) => ({
@@ -162,18 +166,8 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
     setSelectedView(ev.target.value as ViewType);
   };
 
-  const onClickPrev = () => {
-    getCalInstance()["prev"]();
-    updateRenderRangeText();
-  };
-
-  const onClickNext = () => {
-    getCalInstance()["next"]();
-    updateRenderRangeText();
-  };
-
-  const onClickToday = () => {
-    getCalInstance()["today"]();
+  const onClickNav = (option: "prev" | "next" | "today") => {
+    getCalInstance()[option]();
     updateRenderRangeText();
   };
 
@@ -234,7 +228,7 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
     inst.createEvents([event]);
     inst.clearGridSelections();
 
-    var events = JSON.parse(localStorage.getItem("calendar-events") || '');
+    var events = JSON.parse(localStorage.getItem("calendar-events") || "");
     events.push(event);
     localStorage.setItem("calendar-events", JSON.stringify(events));
   };
@@ -262,10 +256,15 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
     console.log("onDeleteSelectedEvent", selectedEvent);
     getCalInstance().deleteEvent(selectedEvent.id, selectedEvent.calendarId);
 
-    var events = JSON.parse(localStorage.getItem("calendar-events") || '');
-    events = events.filter((e: Partial<EventObject>) => (e.id !== selectedEvent.id && e.calendarId !== selectedEvent.calendarId));
+    const eventsStored = JSON.parse(
+      localStorage.getItem("calendar-events") || ""
+    );
+    const events = eventsStored.filter(
+      (e: Partial<EventObject>) =>
+        e.id !== selectedEvent.id && e.calendarId !== selectedEvent.calendarId
+    );
     localStorage.setItem("calendar-events", JSON.stringify(events));
-    
+
     onEventDetailClose();
   };
 
@@ -286,9 +285,9 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
         </Select>
         <HStack w="100%">
           <ButtonGroup variant="solid" isAttached gap={1}>
-            <Button onClick={onClickToday}>Today</Button>
-            <Button onClick={onClickPrev}>Prev</Button>
-            <Button onClick={onClickNext}>Next</Button>
+            <Button onClick={() => onClickNav("today")}>Today</Button>
+            <Button onClick={() => onClickNav("prev")}>Prev</Button>
+            <Button onClick={() => onClickNav("next")}>Next</Button>
           </ButtonGroup>
           <Spacer />
           <Box>
@@ -304,7 +303,11 @@ const DimspaceCalendar = ({ view, courseNum }: { view: ViewType, courseNum: cour
         height="900px"
         calendars={initialCalendars}
         month={{ startDayOfWeek: 1 }}
-        events={allEvents.filter((event) => (courseNum) ? event.calendarId === courseNum : true )}
+        events={
+          courseId
+            ? allEvents.filter((event) => event.calendarId === courseId)
+            : allEvents
+        }
         template={{
           milestone(event) {
             return `<span style="color: #fff; background-color: ${event.backgroundColor};">${event.title}</span>`;
