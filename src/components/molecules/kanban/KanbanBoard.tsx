@@ -6,23 +6,29 @@ import { useEffect, useState } from "react";
 import { Cards } from "../../../utils/types";
 
 export default function KanbanBoard() {
-  const [todoItems, setTodoItems] = useState<Array<Cards>>(JSON.parse(localStorage.getItem("todoItems")?? '""'));
-  const [doneItems, setDoneItems] = useState<Array<Cards>>(JSON.parse(localStorage.getItem("doneItems")?? '""'));
-  const [inProgressItems, setInProgressItems] = useState<Array<Cards>>(JSON.parse(localStorage.getItem("inProgressItems")?? '""'));
+  const [todoItems, setTodoItems] = useState<Array<Cards>>(
+    JSON.parse(localStorage.getItem("todoItems") ?? '""')
+  );
+  const [doneItems, setDoneItems] = useState<Array<Cards>>(
+    JSON.parse(localStorage.getItem("doneItems") ?? '""')
+  );
+  const [inProgressItems, setInProgressItems] = useState<Array<Cards>>(
+    JSON.parse(localStorage.getItem("inProgressItems") ?? '""')
+  );
 
   const addNewCard = (title: string, courseName: string, deadline: string) => {
-    setTodoItems([...todoItems, { title , courseName, deadline }]);
+    setTodoItems([...todoItems, { title, courseName, deadline }]);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem("todoItems", JSON.stringify(todoItems));
   }, [todoItems]);
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem("inProgressItems", JSON.stringify(inProgressItems));
   }, [inProgressItems]);
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem("doneItems", JSON.stringify(doneItems));
   }, [doneItems]);
 
@@ -38,11 +44,14 @@ export default function KanbanBoard() {
         const parent = e.active.data.current?.parent ?? "ToDo";
         if (container !== parent) {
           if (container === "ToDo") {
-            setTodoItems([...todoItems, { title , courseName, deadline }]);
+            setTodoItems([...todoItems, { title, courseName, deadline }]);
           } else if (container === "Done") {
-            setDoneItems([...doneItems, { title , courseName, deadline }]);
+            setDoneItems([...doneItems, { title, courseName, deadline }]);
           } else {
-            setInProgressItems([...inProgressItems, { title , courseName, deadline }]);
+            setInProgressItems([
+              ...inProgressItems,
+              { title, courseName, deadline },
+            ]);
           }
           if (parent === "ToDo") {
             setTodoItems([
