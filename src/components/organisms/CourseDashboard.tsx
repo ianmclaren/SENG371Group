@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   Heading,
   HStack,
@@ -13,7 +14,6 @@ import CourseCard from "../molecules/course/CourseCard";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { Term } from "../../utils/types";
-import { useNavigate } from "react-router-dom";
 import KanbanModal from "../molecules/kanban/KanbanModal";
 import "@toast-ui/calendar/dist/toastui-calendar.min.css";
 import FrequentActions from "../molecules/FrequentActions";
@@ -45,31 +45,29 @@ const CourseDashboard = ({
   return (
     <Box p={4}>
       <HStack justify="space-between" w="100%">
-        <HStack
+        <Button
           onClick={() => setIsCalendarView(!isCalendarView)}
-          cursor="pointer"
+          variant="unstyled"
           _hover={{
             textDecoration: "underline",
           }}
+          leftIcon={<CalendarIcon />}
         >
-          <CalendarIcon />
-          <Text fontSize="xl">
-            {isCalendarView ? "Hide calendar" : "Show calendar"}
-          </Text>
-        </HStack>
-        <HStack
-          onClick={() => setDisplayCompleted(!displayCompleted)}
-          cursor="pointer"
-          _hover={{
-            textDecoration: "underline",
-          }}
-        >
+          {isCalendarView ? "Hide calendar" : "Show calendar"}
+        </Button>
+        <HStack divider={<Text mx={2}>|</Text>}>
           <KanbanModal />
-          <Icon as={displayCompleted ? BsEye : BsEyeSlash} fontSize="xl" />
-          <Text fontSize="xl">
+          <Button
+            onClick={() => setDisplayCompleted(!displayCompleted)}
+            variant="unstyled"
+            _hover={{
+              textDecoration: "underline",
+            }}
+            leftIcon={<Icon as={displayCompleted ? BsEye : BsEyeSlash} />}
+          >
             {displayCompleted ? "Hide " : "Show "}
             completed courses
-          </Text>
+          </Button>
         </HStack>
       </HStack>
       <Stack align="start" p={4} direction={isSmallScreen ? "column" : "row"}>
