@@ -15,7 +15,14 @@ export default function KanbanLane({ title, items }: KanbanLaneProps) {
 
   return (
     <Flex flex="3" padding="5" flexDirection="column" minH="sm">
-      <Text fontWeight="bold" textAlign={'center'} textTransform={'uppercase'} letterSpacing={2}>{title}</Text>
+      <Text
+        fontWeight="bold"
+        textAlign={"center"}
+        textTransform={"uppercase"}
+        letterSpacing={2}
+      >
+        {title}
+      </Text>
       <Flex
         ref={setNodeRef}
         backgroundColor="gray.300"
@@ -24,9 +31,17 @@ export default function KanbanLane({ title, items }: KanbanLaneProps) {
         padding="2"
         flexDirection="column"
       >
-        {items.map(({ title: cardTitle, courseName, deadline }, key) => (
-          <KanbanCard title={cardTitle} courseName={courseName} deadline={deadline} key={key} index={key} parent={title} />
-        ))}
+        {items &&
+          items.map(({ title: cardTitle, courseName, deadline }, key) => (
+            <KanbanCard
+              title={cardTitle}
+              courseName={courseName}
+              deadline={deadline}
+              key={key}
+              index={key}
+              parent={title}
+            />
+          ))}
       </Flex>
     </Flex>
   );

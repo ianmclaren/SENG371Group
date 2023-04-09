@@ -16,7 +16,6 @@ import { Term } from "../../utils/types";
 import { useNavigate } from "react-router-dom";
 import KanbanModal from "../molecules/kanban/KanbanModal";
 
-
 const CourseDashboard = ({
   term,
   searchPrompt,
@@ -39,7 +38,7 @@ const CourseDashboard = ({
   return (
     <Box p={4}>
       <HStack justify="end">
-        <KanbanModal/>
+        <KanbanModal />
         <HStack
           onClick={() => setDisplayCompleted(!displayCompleted)}
           cursor="pointer"
@@ -47,7 +46,6 @@ const CourseDashboard = ({
             textDecoration: "underline",
           }}
         >
-          
           <Icon as={displayCompleted ? BsEye : BsEyeSlash} fontSize="xl" />
           <Text fontSize="xl">
             {displayCompleted ? "Hide " : "Show "}
