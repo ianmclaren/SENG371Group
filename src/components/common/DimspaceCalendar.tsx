@@ -221,7 +221,7 @@ const DimspaceCalendar = ({
 
     const events = eventsStored.filter(
       (e: Partial<EventObject>) =>
-        e.id !== selectedEvent.id && e.calendarId !== selectedEvent.calendarId
+        e.id !== selectedEvent.id
     );
     localStorage.setItem("calendar-events", JSON.stringify(events));
 
