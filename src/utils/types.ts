@@ -1,3 +1,5 @@
+import { EventObject } from "@toast-ui/calendar";
+
 export type Term =
   | "All"
   | "Spring 2023"
@@ -22,7 +24,10 @@ export type Course = {
   content?: CourseContent[];
   grades?: Grade[];
   darkColor?: string;
+  events?: Partial<EventObject>[];
 };
+
+export type ViewType = "month" | "week" | "day";
 
 export type CourseContent = {
   week: number;
@@ -102,3 +107,11 @@ export interface Cards {
   courseName: string;
   deadline: string;
 }
+
+export type SelectDateTimeInfo = {
+  start: Date;
+  end: Date;
+  isAllday: boolean;
+  nativeEvent?: MouseEvent;
+  gridSelectionElements: Element[];
+};

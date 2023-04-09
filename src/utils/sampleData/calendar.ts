@@ -1,0 +1,148 @@
+import { EventObject } from "@toast-ui/calendar";
+import { TZDate } from "@toast-ui/calendar";
+import { addDate } from "../helper";
+import { v4 as uuidv4 } from "uuid";
+
+// Create a new date object with the current date but with the time set to 23:59:59
+const today = new TZDate(new Date().setHours(23, 59, 59));
+
+//Note: calendarId is the courseID for the event
+export const courseEvents: Partial<EventObject>[] = [
+  {
+    id: uuidv4(),
+    calendarId: "1",
+    title: "Assignment 1",
+    category: "milestone",
+    end: addDate(today, -8).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "1",
+    title: "Assignment 2",
+    category: "milestone",
+    end: addDate(today, 1).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "1",
+    title: "Assignment 3",
+    category: "milestone",
+    end: addDate(today, 9).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "2",
+    title: "Presentation",
+    category: "milestone",
+    end: addDate(today, -4).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "2",
+    title: "Assignment 1",
+    category: "milestone",
+    end: addDate(today, 2).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "2",
+    title: "Project",
+    start: addDate(today, 9).toDate().toISOString(),
+    end: addDate(today, 13).toDate().toISOString(),
+    isAllday: true,
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "3",
+    title: "Project",
+    category: "milestone",
+    end: today.toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "4",
+    title: "Design Project",
+    start: addDate(today, 6).toDate().toISOString(),
+    end: addDate(today, 13).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "1",
+    title: "Quiz 1",
+    category: "milestone",
+    end: addDate(today, -3).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "1",
+    title: "Quiz 2",
+    category: "milestone",
+    end: addDate(today, 3).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "1",
+    title: "Quiz 3",
+    category: "milestone",
+    end: addDate(today, 10).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "2",
+    title: "Quiz 1",
+    category: "milestone",
+    end: addDate(today, -7).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "2",
+    title: "Quiz 2",
+    category: "milestone",
+    end: addDate(today, 1).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "2",
+    title: "Quiz 3",
+    category: "milestone",
+    end: addDate(today, 8).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "3",
+    title: "Quiz 1",
+    category: "milestone",
+    end: addDate(today, 6).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "3",
+    title: "Quiz 2",
+    category: "milestone",
+    end: addDate(today, 15).toDate().toISOString(),
+    isReadOnly: true,
+  },
+  {
+    id: uuidv4(),
+    calendarId: "3",
+    title: "Quiz 3",
+    category: "milestone",
+    end: addDate(today, 22).toDate().toISOString(),
+    isReadOnly: true,
+  },
+];

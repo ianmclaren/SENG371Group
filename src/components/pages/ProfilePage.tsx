@@ -4,8 +4,9 @@ import ProfileHeader from "../molecules/profile/ProfileHeader";
 import ProfileSettings from "../molecules/profile/ProfileSettings";
 
 const ProfilePage = () => {
+  const storedValue = localStorage.getItem("fontMultiplier");
   const [textMultiplier, setTextMultiplier] = useState(
-    JSON.parse(localStorage.getItem("fontMultiplier") ?? "") ?? 50
+    storedValue === null ? 50 : JSON.parse(storedValue)
   );
 
   useEffect(() => {

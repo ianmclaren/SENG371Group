@@ -12,6 +12,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { sampleCourses } from "../../../utils/sampleData";
 import CourseTitle from "../../atoms/course/CourseTitle";
 import CourseHeader from "../../molecules/course/CourseHeader";
+import DimspaceCalendar from "../../common/DimspaceCalendar";
 
 const CourseHome = () => {
   let { courseid } = useParams();
@@ -65,71 +66,77 @@ const CourseHome = () => {
           </Text>
         </Box>
       ))}
-      <VStack p={1}>
-        <Box w="100%" p={4}>
-          <Heading fontWeight="medium" size="lg">
-            Upcoming This Week
-          </Heading>
+
+      <VStack>
+        <VStack p={1}>
+          <Box w="100%" p={4}>
+            <Heading fontWeight="medium" size="lg">
+              Upcoming This Week
+            </Heading>
+          </Box>
+          <HStack gap={10} p={3}>
+            <Button
+              p={20}
+              borderRadius="lg"
+              {...buttonStyle}
+              fontWeight="bold"
+              fontSize="xl"
+              onClick={() => {
+                navigate({
+                  pathname: `/course/${courseid}/assignments`,
+                });
+              }}
+            >
+              <VStack>
+                <Text fontWeight="bold">ASSIGNMENTS</Text>
+                <Spacer h={3} />
+                <Text fontWeight="normal">Assignment 1</Text>
+                <Text fontWeight="light"> - Due March 23</Text>
+              </VStack>
+            </Button>
+            <Button
+              p={20}
+              borderRadius="lg"
+              {...buttonStyle}
+              fontWeight="bold"
+              fontSize="xl"
+              onClick={() => {
+                navigate({
+                  pathname: `/course/${courseid}/quizzes`,
+                });
+              }}
+            >
+              <VStack>
+                <Text fontWeight="bold">Quizzes</Text>
+                <Spacer h={3} />
+                <Text fontWeight="normal">Quiz 3</Text>
+                <Text fontWeight="light"> - Due March 25</Text>
+              </VStack>
+            </Button>
+            <Button
+              p={20}
+              borderRadius="lg"
+              {...buttonStyle}
+              fontWeight="bold"
+              fontSize="xl"
+              onClick={() => {
+                navigate({
+                  pathname: `/course/${courseid}/discussions`,
+                });
+              }}
+            >
+              <VStack>
+                <Text fontWeight="bold">Discussions</Text>
+                <Spacer h={3} />
+                <Text fontWeight="normal">Discussion 1</Text>
+                <Text fontWeight="light"> - Due March 27</Text>
+              </VStack>
+            </Button>
+          </HStack>
+        </VStack>
+        <Box w="80%">
+          <DimspaceCalendar view="month" courseId={courseid} />
         </Box>
-        <HStack gap={10} p={3}>
-          <Button
-            p={20}
-            borderRadius="lg"
-            {...buttonStyle}
-            fontWeight="bold"
-            fontSize="xl"
-            onClick={() => {
-              navigate({
-                pathname: `/course/${courseid}/assignments`,
-              });
-            }}
-          >
-            <VStack>
-              <Text fontWeight="bold">ASSIGNMENTS</Text>
-              <Spacer h={3} />
-              <Text fontWeight="normal">Assignment 1</Text>
-              <Text fontWeight="light"> - Due March 23</Text>
-            </VStack>
-          </Button>
-          <Button
-            p={20}
-            borderRadius="lg"
-            {...buttonStyle}
-            fontWeight="bold"
-            fontSize="xl"
-            onClick={() => {
-              navigate({
-                pathname: `/course/${courseid}/quizzes`,
-              });
-            }}
-          >
-            <VStack>
-              <Text fontWeight="bold">Quizzes</Text>
-              <Spacer h={3} />
-              <Text fontWeight="normal">Quiz 3</Text>
-              <Text fontWeight="light"> - Due March 25</Text>
-            </VStack>
-          </Button>
-          <Button
-            p={20}
-            borderRadius="lg"
-            {...buttonStyle}
-            fontWeight="bold"
-            fontSize="xl"
-            onClick={() => {
-              navigate({
-                pathname: `/course/${courseid}/discussions`,
-              });
-            }}
-          >
-            <VStack>
-              <Text fontWeight="bold">Discussions</Text>
-              <Spacer h={3} />
-              <Text fontWeight="normal">Discussion 1</Text>
-              <Text fontWeight="light"> - Due March 27</Text>
-            </VStack>
-          </Button>
-        </HStack>
       </VStack>
     </Box>
   );

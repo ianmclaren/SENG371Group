@@ -19,9 +19,10 @@ const CourseCard = ({ course }: { course: Course }) => {
     <VStack
       border="1px"
       borderColor="gray.400"
-      minW="250px"
+      minW="100px"
       maxW="400px"
       flexGrow={1}
+      flexShrink={1}
       h="200px"
       shadow="md"
       _hover={{ shadow: "xl" }}
