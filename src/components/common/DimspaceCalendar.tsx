@@ -25,7 +25,6 @@ import EventDetailModal from "../molecules/EventDetailModal";
 import CreateEventModal from "../molecules/CreateEventModal";
 import { sampleCourses } from "../../utils/sampleData";
 import { courseEvents } from "../../utils/sampleData/calendar";
-import { v4 as uuidv4 } from "uuid";
 
 const viewModeOptions = [
   {
@@ -220,8 +219,7 @@ const DimspaceCalendar = ({
     );
 
     const events = eventsStored.filter(
-      (e: Partial<EventObject>) =>
-        e.id !== selectedEvent.id
+      (e: Partial<EventObject>) => e.id !== selectedEvent.id
     );
     localStorage.setItem("calendar-events", JSON.stringify(events));
 
