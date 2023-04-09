@@ -1,19 +1,23 @@
 import {
   Box,
-  Center,
   Flex,
   Heading,
   HStack,
   Icon,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { sampleCourses, sampleFrequentActions } from "../../utils/sampleData";
+import { sampleCourses } from "../../utils/sampleData";
 import CourseCard from "../molecules/course/CourseCard";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { Term } from "../../utils/types";
-import { useNavigate } from "react-router-dom";
+import "@toast-ui/calendar/dist/toastui-calendar.min.css";
+import FrequentActions from "../molecules/FrequentActions";
+import { useSmallScreen } from "../../utils/helper";
+import DimspaceCalendar from "../common/DimspaceCalendar";
+import { CalendarIcon } from "@chakra-ui/icons";
 
 const CourseDashboard = ({
   term,
@@ -32,11 +36,25 @@ const CourseDashboard = ({
     course.name.toLowerCase().includes(searchPrompt.toLowerCase())
   );
 
-  const navigate = useNavigate();
+  const isSmallScreen = useSmallScreen();
+
+  const [isCalendarView, setIsCalendarView] = useState(false);
 
   return (
     <Box p={4}>
-      <HStack justify="end">
+      <HStack justify="space-between" w="100%">
+        <HStack
+          onClick={() => setIsCalendarView(!isCalendarView)}
+          cursor="pointer"
+          _hover={{
+            textDecoration: "underline",
+          }}
+        >
+          <CalendarIcon />
+          <Text fontSize="xl">
+            {isCalendarView ? "Hide calendar" : "Show calendar"}
+          </Text>
+        </HStack>
         <HStack
           onClick={() => setDisplayCompleted(!displayCompleted)}
           cursor="pointer"
@@ -51,89 +69,44 @@ const CourseDashboard = ({
           </Text>
         </HStack>
       </HStack>
-      <Center>
+      <Stack align="start" p={4} direction={isSmallScreen ? "column" : "row"}>
+        {isCalendarView && (
+          <Box w={isSmallScreen ? "100%" : "50%"}>
+            <DimspaceCalendar view="month" courseId={undefined} />
+          </Box>
+        )}
         <VStack
-          p={2}
-          margin={3}
-          border="solid"
-          borderRadius={10}
-          borderWidth={1}
+          w={isSmallScreen || !isCalendarView ? "100%" : "50%"}
+          align="stretch"
         >
-          <Text
-            textAlign="center"
-            fontWeight="medium"
-            fontSize="xl"
-            letterSpacing={3}
-            textTransform="uppercase"
+          <FrequentActions />
+          <Flex
+            gap={4}
+            p={4}
+            wrap="wrap"
+            justify="center"
+            align="stretch"
+            mx="auto"
+            w="100%"
           >
-            Frequent Actions
-          </Text>
-          <Flex gap={8} p={2} justify="center">
-            {sampleFrequentActions.length > 0 ? (
-              sampleFrequentActions.map((frequentAction) => (
-                <Box
-                  bgColor="gray.200"
-                  _dark={{
-                    bgColor: "gray.600",
-                  }}
-                  py={2}
-                  px={4}
-                  borderRadius={20}
-                  key={frequentAction.topic}
-                  onClick={() =>
-                    navigate({
-                      pathname: frequentAction.linkTo,
-                    })
-                  }
-                  cursor="pointer"
-                  _hover={{
-                    shadow: "xl",
-                    _dark: {
-                      shadow: "dark-lg",
-                    },
-                  }}
-                >
-                  <Text fontWeight="bold">{frequentAction.topic}</Text>
-                  <Text>{frequentAction.courseName}</Text>
-                  <Text as="i" fontWeight="light">
-                    Accessed {frequentAction.accessCount} times in the last{" "}
-                    {frequentAction.timeRange}
-                  </Text>
-                </Box>
+            {searchPrompt ? (
+              filteredSearch.length > 0 ? (
+                filteredSearch.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))
+              ) : (
+                <Heading fontWeight="medium">Uh oh... no courses found</Heading>
+              )
+            ) : filteredCourses.length > 0 ? (
+              filteredCourses.map((course) => (
+                <CourseCard key={course.id} course={course} />
               ))
             ) : (
-              <Heading fontWeight="medium">
-                No relevant frequent actions
-              </Heading>
+              <Heading fontWeight="medium">Uh oh... no courses found</Heading>
             )}
           </Flex>
         </VStack>
-      </Center>
-      <Flex
-        gap={4}
-        p={4}
-        wrap="wrap"
-        justify="center"
-        align="stretch"
-        mx="auto"
-        maxW={["100%", "90%", "70%"]}
-      >
-        {searchPrompt ? (
-          filteredSearch.length > 0 ? (
-            filteredSearch.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))
-          ) : (
-            <Heading fontWeight="medium">Uh oh... no courses found</Heading>
-          )
-        ) : filteredCourses.length > 0 ? (
-          filteredCourses.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))
-        ) : (
-          <Heading fontWeight="medium">Uh oh... no courses found</Heading>
-        )}
-      </Flex>
+      </Stack>
     </Box>
   );
 };

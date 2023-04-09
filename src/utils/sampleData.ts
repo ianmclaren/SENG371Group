@@ -18,9 +18,9 @@ export const sampleCourses: Course[] = [
     year: 2023,
     professor: "John Doe",
     completed: false,
-    color: "red.400",
+    color: "#F56565",
     content: cscSampleContent,
-    darkColor: "red.700",
+    darkColor: "#9B2C2C",
   },
   {
     id: "2",
@@ -31,8 +31,8 @@ export const sampleCourses: Course[] = [
     year: 2023,
     professor: "Jane Doe",
     completed: false,
-    notifications: ["Midterm is coming up!"],
-    color: "blue.400",
+    notifications: ["Quiz 2 is coming up!"],
+    color: "#4299E1",
     content: [
       {
         week: 1,
@@ -51,7 +51,7 @@ export const sampleCourses: Course[] = [
         completed: true,
       },
     ],
-    darkColor: "blue.700",
+    darkColor: "#2C5282",
   },
   {
     id: "3",
@@ -62,8 +62,8 @@ export const sampleCourses: Course[] = [
     year: 2023,
     professor: "Mark Smith",
     completed: false,
-    color: "green.400",
-    darkColor: "green.700",
+    color: "#48BB78",
+    darkColor: "#276749",
   },
   {
     id: "4",
@@ -78,8 +78,8 @@ export const sampleCourses: Course[] = [
       "Assignment 1 is due in 2 days",
       "Groups are being formed for the final project in the next lab",
     ],
-    color: "yellow.400",
-    darkColor: "yellow.700",
+    color: "#ECC94B",
+    darkColor: "#B7791F",
   },
   {
     id: "5",
@@ -90,8 +90,8 @@ export const sampleCourses: Course[] = [
     year: 2022,
     professor: "John Doe",
     completed: true,
-    color: "purple.400",
-    darkColor: "purple.700",
+    color: "#9F7AEA",
+    darkColor: "#553C9A",
   },
   {
     id: "6",
@@ -102,8 +102,8 @@ export const sampleCourses: Course[] = [
     year: 2022,
     professor: "Jane Doe",
     completed: true,
-    color: "pink.400",
-    darkColor: "pink.700",
+    color: "#ED64A6",
+    darkColor: "#97266D",
   },
   {
     id: "7",
@@ -114,8 +114,8 @@ export const sampleCourses: Course[] = [
     year: 2022,
     professor: "Mark Smith",
     completed: true,
-    color: "orange.400",
-    darkColor: "orange.700",
+    color: "#ED8936",
+    darkColor: "#9C4221",
   },
 ];
 
