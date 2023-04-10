@@ -31,16 +31,24 @@ export const KanbanCard = ({
   
   return (
     <VStack
-      padding="3"
-      backgroundColor="white"
+      p={3}
+      bgColor="white"
       margin="2"
       borderRadius="8"
-      boxShadow="0px 0px 5px 2px #2121213b"
       transform={style.transform}
       {...listeners}
       {...attributes}
       ref={setNodeRef}
       textAlign='center'
+      _dark={{
+        bgColor: "gray.600"
+      }}
+      _hover={{
+        shadow: "xl",
+        _dark: {
+          shadow: "dark-lg",
+        },
+      }}
     >
       <Text fontSize='md'>{title}</Text>
       <Text fontSize='sm'>{courseName}</Text>

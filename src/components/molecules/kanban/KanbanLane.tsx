@@ -25,11 +25,14 @@ export default function KanbanLane({ title, items }: KanbanLaneProps) {
       </Text>
       <Flex
         ref={setNodeRef}
-        backgroundColor="gray.300"
+        bgColor="gray.300"
         borderRadius="8"
         flex="1"
         padding="2"
         flexDirection="column"
+        _dark={{
+          bgColor: "gray.400"
+        }}
       >
         {items &&
           items.map(({ title: cardTitle, courseName, deadline }, key) => (
