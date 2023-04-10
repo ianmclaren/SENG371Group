@@ -1,5 +1,6 @@
-import { Flex, Text, Button, Input } from "@chakra-ui/react";
+import { Flex, Button, Input, FormControl, FormLabel } from "@chakra-ui/react";
 import { useRef, useState } from "react";
+import { Form, Formik } from 'formik';
 
 export default function AddCard({addCard}: { addCard: (title: string, courseName: string, deadline: string) => void;}) 
 {
@@ -10,54 +11,66 @@ export default function AddCard({addCard}: { addCard: (title: string, courseName
 
   return (
     <Flex p="5" alignItems="center">
-      <Text flex="2" textAlign="center">
-        Task Title
-      </Text>
-      <Input
-        type="text"
-        flex="3"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-        required
-      />
-      <Text flex="2" textAlign="center">
-        Course
-      </Text>
-      <Input
-        type="text"
-        flex="2"
-        onChange={(e) => setCourseName(e.target.value)}
-        value={courseName}
-        required
-      />
-      <Text flex="2" textAlign="center">
-        Deadline
-      </Text>
-      <Input
-        type="datetime-local"
-        flex="5"
-        onChange={(e) => setDeadline(e.target.value)}
-        ref={dateInputRef}
-        required
-      />
-      <Button
-        flex="1"
-        marginX="3"
-        bgColor="blue.400"
-        color="white"
-        onClick={() => {
+      <Formik
+        initialValues={{ title: '', courseName:'', deadline:''}}
+        onSubmit={(_,actions) => {
           addCard(title,courseName,deadline);
           setTitle("");
           setCourseName("");
           setDeadline("");
+          actions.setSubmitting(false);
         }}
-        _hover = {{
-            bgColor : "blue.700"
-        }}
-        disabled = {!title}
       >
-        Add Task
-      </Button>
+        {(props) => (
+          <Form>
+            <Flex gap={4}>
+            <FormControl isRequired>
+              <FormLabel textAlign="center">
+                Task Title
+              </FormLabel>
+              <Input
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel textAlign="center">
+                Course
+              </FormLabel>
+              <Input
+                type="text"
+                onChange={(e) => setCourseName(e.target.value)}
+                value={courseName}
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel textAlign="center">
+                Deadline
+              </FormLabel>
+              <Input
+                type="datetime-local"
+                onChange={(e) => setDeadline(e.target.value)}
+                ref={dateInputRef}
+                value={deadline}
+              />
+            </FormControl>
+            <Button
+              type="submit"
+              padding={9}
+              bgColor="blue.400"
+              color="white"
+              _hover = {{
+                  bgColor : "blue.700"
+              }}
+              isLoading={props.isSubmitting}
+            >
+              Add Task
+            </Button>
+            </Flex>
+          </Form>
+        )}
+      </Formik>
     </Flex>
   );
 }
