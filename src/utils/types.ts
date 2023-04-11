@@ -102,6 +102,12 @@ export type Quiz = {
   percentage: number;
 };
 
+export interface Cards {
+  title: string;
+  courseName: string;
+  deadline: string;
+}
+
 export type SelectDateTimeInfo = {
   start: Date;
   end: Date;
